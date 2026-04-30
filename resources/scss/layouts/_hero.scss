@@ -1,0 +1,98 @@
+@use '../globals/variables' as *;
+@use "sass:color";
+
+.hero {
+
+    background-color: $clr-black;
+    color: $clr-white;
+    text-align: start;
+
+    @media (min-width: $break-sm) {
+        text-align: center;
+    }
+    @media (min-width: $break-md) {
+        text-align: start;
+    }
+
+    & .section-wrapper {
+        @include flex-column;
+        height: $min-height;
+        padding: $inline-padding-mobile;
+        justify-content: end;
+        gap: 1rem;
+        max-width: 34rem;
+        margin-inline: auto;
+        
+        @media (min-width: $break-md) {
+            max-width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: $inline-padding-tablet;
+        }
+
+        & .hero-content {
+            @include flex-column;
+            gap: 1.2rem;
+            @media (min-width: $break-md) {
+                width: min(50%, 37.5rem);
+                gap: 3rem;
+            }
+
+            & .title-page {
+                font-size: 1.5rem;
+                font-weight: $fw-700;
+                line-height: 1.25;
+                @media (min-width:$break-md) {
+                    font-size: 2rem;
+                }
+                @media (min-width:$break-lg) {
+                    font-size: 3rem;
+                }
+            
+                & .my-name {
+                    display: none;
+                    font-size: 1.25rem;
+                    color: $clr-gray;
+                    @media (min-width:$break-smaller) {
+                        display: inline;
+                    }
+                    @media (min-width:$break-md) {
+                        font-size: 1.5rem;
+                    }
+                    @media (min-width:$break-lg) {
+                        font-size: 2rem;
+                    }
+                }
+            }
+
+            & .claim {
+                color: $clr-gray;
+                width: 100%;
+                @media (min-width: $break-md) {
+                    width: 90%;
+                }
+            }
+
+            .call-to-action{ 
+                display: flex;
+                // flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                font-size: $fs-xs;
+                @media (min-width: $break-smaller) {font-size:inherit;}
+                @media (min-width: $break-md) {justify-content: start;}
+            }
+        }
+
+        & .hero-image {
+            width: min(75%,14rem);
+            margin-inline: auto;
+            @media (min-width: $break-md) {
+                flex-grow: 0;
+                width: min(35%, 26rem);
+                margin-inline:0;
+            }
+        }
+    }
+}

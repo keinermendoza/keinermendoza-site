@@ -1,0 +1,219 @@
+@use './variables' as *;
+@use "sass:color";
+
+.flex-between {
+    @include flex-row-between;
+    line-height: 1;
+}
+
+.flex-col {
+    @include flex-column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+.items-center {
+    align-items: center;
+}
+
+.relative {
+    position: relative;
+}
+
+.icon {
+    width: 2rem;
+    height: auto;
+}
+.mini-icon {
+    height: 0.875rem;
+}
+ .mb-4 {
+    margin-bottom: 1rem;
+ }
+
+
+.underline-effect {
+    position: relative;
+
+    &::after  {
+        content: '';
+        position: absolute;
+        bottom: -.5rem;
+        left: 0;
+        width: 100%;
+        height: 1px;
+    
+        transform: scaleX(0);
+        transform-origin: center;
+        background-color: $clr-white;
+        transition: transform 250ms;
+    }
+    
+    &:hover:after {
+        transform: scaleX(1);
+    }
+}
+    
+
+
+a.disabled {
+    opacity: 0.5;
+    pointer-events: none
+}
+
+.button {
+    @include button;
+}
+.h2 {
+    font-weight: $fw-700;
+    font-size: $fs-h2-mobile;
+    line-height: 1.2;
+    @media (min-width:$break-md) {
+        font-size: $fs-h2-desktop;
+    }
+}
+
+.h3 {
+    font-weight: $fw-600;
+    font-size: $fs-h3-mobile;
+    // line-height: 1.2;
+    @media (min-width:$break-md) {
+        font-size: $fs-h3-desktop;
+    }
+}
+.outline-button {
+    @include button;
+    border: 2px solid $clr-black;
+
+    &:hover,
+    &:focus
+    {
+        background-color: rgba($clr-black, 0.15);
+    }
+}
+@mixin primary-button {
+    @include button;
+    background-color: $clr-primary;
+    color: $clr-black;
+    &:hover,
+    &:focus
+     {
+        background-color:$clr-secondary;
+    }
+}
+
+.primary-button {
+    @include primary-button;
+}
+
+.primary-button--keep-bg {
+    @include primary-button;
+    background-color: rgba($clr-primary, 0.8) !important;
+}
+
+.secondary-button {
+    @include button;
+    background-color: $clr-black;
+    border: 2px solid $clr-white;
+    color: $clr-white;
+    &:hover,
+    &:focus {
+        background-color:$clr-secondary;
+        background-color:color.adjust($clr-black, $lightness: 20%, $space: hsl);
+    }
+}
+
+.badge-primary {
+    @include badge;
+    background-color: $clr-black;
+    color: $clr-gray-dark;
+    border: 1px solid $clr-secondary;
+}
+
+.section-wrapper {
+    width: min(100%, $break-lg);
+    margin-inline: auto;
+    padding-inline: $inline-padding-mobile;
+    padding-block: $block-padding-desktop;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+.min-h-screen {
+    min-height: 100vh;
+}
+.hidden-md-to-lg {
+    @media (min-width:$break-md) {display: none;}
+    @media (min-width:$break-lg) {display: block;}
+
+}
+
+.max-w-md {
+    max-width: $break-md;
+}
+
+// idea from https://codepen.io/nefejames/pen/emONEew
+.cursor-box {
+    cursor: pointer;
+    background-color: #333;
+    position: relative;
+    overflow: hidden;
+    box-shadow:  0 0.9rem 1.5rem -1rem  $clr-gray-dark;
+    transition: all 0.5s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 2px 2px 0 $clr-gray;
+    }
+    &.current:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+.cursor-box::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    top: -100%;
+    left: -100%;
+    transition: all 0.5s ease;
+}
+
+.cursor-box:hover::before {
+    top: 100%;
+    left: 100%;
+}
+
+
+
+// idea from https://codepen.io/alvarotrigo/pen/GRMbzBR
+.tab {
+    &.active {
+      background-color: rgba($clr-primary, 0.65) !important;
+    }
+  }
+  
+.tab__content {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    opacity: 0;
+    left: 0;
+    transform: translateY(-3px);
+
+    &.active {
+        opacity: 1;
+        transition: 0.5s opacity ease-in, 0.8s transform ease;
+        position: relative;
+        top: 0;
+        z-index: 0;
+        transform: translateY(0px);
+        text-shadow: 0 0 0;
+    }
+}

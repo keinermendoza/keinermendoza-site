@@ -1,0 +1,73 @@
+@use '../globals/variables' as *;
+@use "sass:color";
+
+$gap-title: 1.5rem;
+$gap-list:1rem;
+
+/** TODO use utility functions for flex direction instead of defining here **/
+.footer {
+    background: linear-gradient(to bottom, $clr-black, color.adjust($clr-black, $lightness: 10%, $space: hsl));
+    color: $clr-white;
+
+    .section-wrapper {
+        @include flex-column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+
+        @media (min-width:$break-md) {
+            @include flex-row-between;
+        }
+    }
+
+    .brand-section {
+        gap:$gap-title;
+        align-items: center;
+        @media (min-width:$break-md) {align-items: start;}
+
+
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: $fw-700;
+        }
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: $gap-title;
+            @media (min-width:$break-md) {align-items: start;}
+        }
+    }
+
+    .availables-pages {
+        gap: $gap-title;
+
+        &__title {
+            font-size: 1.25rem;
+        }
+
+        &__nav-list {
+            gap: $gap-list;
+            color: $clr-gray;
+
+        }
+    }
+    .contact-section {
+        gap: $gap-title;
+        
+        &__title {
+            font-size: 1.25rem;
+        }
+
+        &__link-list {
+            gap: $gap-list;
+            color: $clr-gray;
+            font-size: $fs-xs;
+
+            & a {
+                gap: .5rem;
+            }
+        }
+    }
+
+
+}
