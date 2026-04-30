@@ -88,6 +88,8 @@
         & .hero-image {
             width: min(75%,14rem);
             margin-inline: auto;
+            border-radius: 50%;
+            box-shadow: -0.5rem 0.5rem 0 white;
             @media (min-width: $break-md) {
                 flex-grow: 0;
                 width: min(35%, 26rem);
