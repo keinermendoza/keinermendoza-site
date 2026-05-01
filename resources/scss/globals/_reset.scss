@@ -7,6 +7,14 @@
     padding: 0;
 }
 
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans';
+}
 input,
 textarea {
   border: none;
