@@ -1,0 +1,6 @@
+<div class="tech-icon">
+    {{$slot}}
+    <div class="tech-icon__text">
+        <p>{{$text}}</p>
+    </div>
+</div>

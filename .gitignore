@@ -25,3 +25,7 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# temporal
+resources/views/components/table/
+resources/views/components/table.blade.php

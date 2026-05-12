@@ -2,10 +2,19 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = DB::table('posts')->where('is_public', true)->get();
+    $projects = DB::table('projects')->where('is_public', true)->get();
+    $tags = DB::table('tags')->where('is_public', true)->get();
+
+    return view('welcome', [
+        "posts" => $posts,
+        "projects" => $projects,
+        "tags" => $tags,
+    ]);
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
