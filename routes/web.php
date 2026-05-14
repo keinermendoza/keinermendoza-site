@@ -2,18 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
+use App\Models\Project;
 
 Route::get('/', function () {
-    $posts = DB::table('posts')->where('is_public', true)->get();
-    $projects = DB::table('projects')->where('is_public', true)->get();
-    $tags = DB::table('tags')->where('is_public', true)->get();
-
     return view('welcome', [
-        "posts" => $posts,
-        "projects" => $projects,
-        "tags" => $tags,
+        "posts" => Post::public()->with('tags')->get(),
+        "projects" => Project::public()->with('tags')->get(),
     ]);
 });
 

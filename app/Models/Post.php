@@ -11,6 +11,6 @@ class Post extends Model
     use IsPublicScope;
 
     public function tags() {
-        return $this->belongsToMany(Tag::class, "tags_posts");
+        return $this->belongsToMany(Tag::class, "tags_posts")->public();
     }
 }

@@ -20,11 +20,12 @@
                 </x-slot>
 
                 <x-slot name="tech_stack">
-                {{-- @foreach ()
-                    <c-ui.tech-icon :text="tech.description">
-                        <img style="width:2.5rem; height:2.5rem;" src="{{tech.image.url}}" alt="{{tech.name}} {% trans 'icon' %}">
-                    </c-ui.tech-icon>    
-                @endforeach --}}
+
+                @foreach ($project->tags as $tag)
+                    <x-ui.tech-icon :text="$tag->description">
+                        <img style="width:2.5rem; height:2.5rem;" :src="$tag->image" :alt="$tag->title">
+                    </x-ui.tech-icon>    
+                @endforeach
                 </x-slot>
             </x-project-card-grid>    
             @endforeach
