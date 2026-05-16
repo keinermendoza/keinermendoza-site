@@ -8,6 +8,8 @@ use App\Models\Scope\IsPublicScope;
 class Tag extends Model
 {
     use IsPublicScope;
+    
+    public $timestamps = false;
 
     public function projects() {
         return $this->belongsToMany(Tag::class, "tags_projects");

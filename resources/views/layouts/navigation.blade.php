@@ -17,7 +17,15 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('projects.index')" :active="request()->routeIs('projects')">
-                        {{ __('Projetos') }}
+                        Projetos
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts')">
+                        Posts
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags')">
+                        Tags
                     </x-nav-link>
                 </div>
             </div>

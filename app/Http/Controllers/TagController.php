@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class ProjectController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('projects.index', [
-            'projects' => Project::all()
+        return view('tags.index', [
+            'tags' => Tag::all()
         ]); 
     }
 
@@ -37,7 +37,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show(Tag $tag)
     {
         //
     }
@@ -45,31 +45,31 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Tag $tag)
     {
-        return view('projects.edit', [
-            'project' => $project,
-            'endpoint' => route("projects.update", $project->id)
+        return view('tags.edit', [
+            'tag' => $tag,
+            'endpoint' => route("tags.update", $tag->id)
         ]); 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Tag $tag)
     {
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('projects', 'public');
-            $project->image = $path;
-            $project->save();
+            $path = $request->file('image')->store('tags', 'public');
+            $tag->image = $path;
+            $tag->save();
         }
-        return redirect()->route('projects.index');
+        return redirect()->route('tags.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Tag $tag)
     {
         //
     }

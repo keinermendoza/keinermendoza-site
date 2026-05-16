@@ -5,10 +5,10 @@
             <h1 class="title-page">
                 <span class="my-name">Keiner Mendoza,</span>
                 <br>
-                O desenvolvedor full stack que você está procurando
+                Desenvolvedor web
             </h1>
             <p class="claim">
-                Tenho experiência na criação de múltiplos sites, o que me permitiu desenvolver habilidades práticas em tecnologias como PHP, Python, SQL, Git e JavaScript, além do uso de ferramentas de design como Figma. Estou em constante aprendizado, buscando aprimorar minhas competências e construir soluções eficientes e bem estruturadas.
+                Crio soluções com tenologias como PHP, Laravel, MySQL e JavaScript. Tenho adquirido experiência trabalhando como freelancer e atualmente estoou  procurando minha primeira vaga a tempo compreto como desenvolvedor web.
             </p>
             <div class="call-to-action">
                 
