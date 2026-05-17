@@ -12,10 +12,6 @@
         </div>
     </div>
 
-    {{-- <div class="project-card-grid__video">
-        <lite-youtube videoid="{{video_id}}"></lite-youtube>
-    </div> --}}
-
     <div class="project-card-grid__procces-section">
         <div class="procces">
             <h3 class="h3" >Processo</h3>

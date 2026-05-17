@@ -1,3 +1,5 @@
+
+
 // fonts
 $ff-body: 'Plus Jakarta Sans', 'sans-serif';
 
@@ -94,6 +96,12 @@ body {
     }
 }
 
+.card {
+  background: #fff;
+  border: 1px solid var(--outline-variant);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
 // main {
 //     padding-inline: $mobile-inline-padding;

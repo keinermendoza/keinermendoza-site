@@ -1,0 +1,150 @@
+.primary-btn-container {
+  display: flex;
+  align-items: center;
+  
+  // sparate primary buttons from all other links
+  margin-left: auto;
+  margin-right: 1rem;
+
+  .btn-primary {
+    line-height: 1.5;
+    padding: 10px 24px;
+    border-radius: 22px;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+}
+
+$brakepoint: 85rem;
+
+// adapted from https://codepen.io/fadzrinmadu/pen/bGqrJjB
+// root
+nav {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background-color: rgba(255,255,255,0.9);
+
+  // blur
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  
+  input{
+    display: none;
+  }
+}
+
+.logo a {
+  white-space: nowrap;
+  font-size: 24px;
+  font-weight: var(--fw-title);
+  text-decoration: none;
+  color: var(--clr-black);
+  @media screen and (max-width: $brakepoint) {font-size:var(--fs-sm);}
+}
+
+.wrapper {
+  max-width: 95rem;
+  margin-inline: auto;
+  position: relative;
+  padding: 0px 1.5rem;
+  height: 70px;
+  line-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // separate logo from all other links
+  gap:max(5rem, 4.8vw);
+}
+
+.nav-links {
+  display: inline-flex;
+  align-items: center;
+  flex-grow: 1;
+  gap: 0.25rem;
+
+  @media screen and (max-width: $brakepoint) {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    max-width: 350px;
+    top: 0;
+    left: -100%;
+    background-color: var(--clr-soft-gray);
+    display: block;
+    padding: 50px 10px;
+    line-height: 50px;
+    overflow-y: auto;
+    box-shadow: 0px 15px 15px rgba(0,0,0,0.18);
+    transition: all 0.3s ease;
+  }
+
+  li {
+    list-style: none;
+
+    @media screen and (max-width: $brakepoint) {margin: 15px 10px;}
+
+    .nav-anchor {
+      color: var(--clr-black);
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 9px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+
+      @media screen and (max-width: $brakepoint) {
+        padding: 0 20px;
+        display: block;
+        font-size: 20px;
+      }
+
+      &:hover,
+      &:focus {
+        background: var(--clr-soft-gray) 
+      }
+    }
+  }
+
+}
+
+.btn {
+  // font-size: 20px;
+  cursor: pointer;
+  display: none;
+  
+
+
+  // define button shape
+  @media screen and (max-width: $brakepoint) {
+    width: fit-content;
+    background-color: var(--clr-gray);
+    border-radius: 50%;
+    display: grid;
+    padding: 0.7rem;
+    svg {
+      width: 1.5rem;
+    }
+  }
+
+  &.close-btn{
+    position: absolute;
+    right: 1rem;
+    top: 10px;
+  }
+}
+
+@media screen and (max-width: $brakepoint) {
+  #menu-btn:checked ~ .nav-links{
+    left: 0%;
+  }
+  #menu-btn:checked ~ .btn.menu-btn{
+    display: none;
+  }
+  #close-btn:checked ~ .btn.menu-btn{
+    display: grid;
+  }
+}

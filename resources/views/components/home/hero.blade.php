@@ -3,12 +3,13 @@
     <x-section-wrapper>
         <div class="hero-content">
             <h1 class="title-page">
-                <span class="my-name">Keiner Mendoza,</span>
+                <span class="my-name">Keiner Mendoza</span>
                 <br>
                 Desenvolvedor web
             </h1>
             <p class="claim">
-                Crio soluções com tenologias como PHP, Laravel, MySQL e JavaScript. Tenho adquirido experiência trabalhando como freelancer e atualmente estoou  procurando minha primeira vaga a tempo compreto como desenvolvedor web.
+                Desenvolvo aplicações web com foco em back-end, utilizando PHP, Laravel e MySQL.
+                Tenho experiência como freelancer e estou em busca da minha primeira oportunidade como desenvolvedor fullstack.
             </p>
             <div class="call-to-action">
                 
