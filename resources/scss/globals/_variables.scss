@@ -78,12 +78,6 @@ $clr-secondary-lgd:#07387A;
     align-items: center;
 }
 
-// @mixin title-format {
-//     font-family: $ff-titles;
-//     font-weight: 400;
-//     text-transform: uppercase;
-// }
-
 body {
     font-family: $ff-body;
     font-weight: $fw-500;
@@ -103,9 +97,3 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-// main {
-//     padding-inline: $mobile-inline-padding;
-//     @media (min-width:$break-md) {
-//         padding-inline:$desktop-inline-padding;
-//     }
-// }

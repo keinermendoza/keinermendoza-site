@@ -1,0 +1,8 @@
+@use '../globals/variables' as *;
+
+.section-wrapper {
+    width: min(100%, $break-lg);
+    margin-inline: auto;
+    padding-inline: $inline-padding-mobile;
+    padding-block: $block-padding-desktop;
+}

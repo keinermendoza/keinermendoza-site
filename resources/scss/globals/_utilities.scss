@@ -131,12 +131,6 @@ a.disabled {
     border: 1px solid $clr-secondary;
 }
 
-.section-wrapper {
-    width: min(100%, $break-lg);
-    margin-inline: auto;
-    padding-inline: $inline-padding-mobile;
-    padding-block: $block-padding-desktop;
-}
 
 .flex-grow {
     flex-grow: 1;
@@ -192,28 +186,28 @@ a.disabled {
 
 
 // idea from https://codepen.io/alvarotrigo/pen/GRMbzBR
-.tab {
-    &.active {
-      background-color: rgba($clr-primary, 0.65) !important;
-    }
-  }
+// .tab {
+//     &.active {
+//       background-color: rgba($clr-primary, 0.65) !important;
+//     }
+//   }
   
-.tab__content {
-    background-color: transparent;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-    opacity: 0;
-    left: 0;
-    transform: translateY(-3px);
+// .tab__content {
+//     background-color: transparent;
+//     position: absolute;
+//     width: 100%;
+//     z-index: -1;
+//     opacity: 0;
+//     left: 0;
+//     transform: translateY(-3px);
 
-    &.active {
-        opacity: 1;
-        transition: 0.5s opacity ease-in, 0.8s transform ease;
-        position: relative;
-        top: 0;
-        z-index: 0;
-        transform: translateY(0px);
-        text-shadow: 0 0 0;
-    }
-}
+//     &.active {
+//         opacity: 1;
+//         transition: 0.5s opacity ease-in, 0.8s transform ease;
+//         position: relative;
+//         top: 0;
+//         z-index: 0;
+//         transform: translateY(0px);
+//         text-shadow: 0 0 0;
+//     }
+// }
