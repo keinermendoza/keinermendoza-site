@@ -90,10 +90,14 @@ body {
     }
 }
 
-.card {
-  background: #fff;
-  border: 1px solid var(--outline-variant);
-  border-radius: 1rem;
+.card-shadow {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+    @extend .card-shadow;
+    background: #fff;
+    border: 1px solid $clr-gray;
+    border-radius: 1rem;
 }
 
