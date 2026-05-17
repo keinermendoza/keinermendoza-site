@@ -1,0 +1,15 @@
+@use '../globals/variables' as *;
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    font-weight: $fw-700;
+
+    .subtitle {
+    color: $clr-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    font-size: $fs-base;
+    }
+}
