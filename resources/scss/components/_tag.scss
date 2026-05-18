@@ -1,0 +1,20 @@
+@use '../globals/variables' as *;
+
+.tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.tag-blue {
+    background: $clr-secondary;
+    color: #fff;
+}
+
+.tag-black {
+    background: #fff;
+    color: $clr-blackest;
+}
