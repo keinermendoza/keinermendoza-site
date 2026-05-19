@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Scope\IsPublicScope;
+use App\Models\Traits\IsPublicScope;
+use App\Models\Traits\GetImageURL;
+
 class Project extends Model
 {
     use IsPublicScope;
+    use GetImageURL;
 
     protected $fillable = [
         'title',

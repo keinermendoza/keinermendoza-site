@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\Scope;
+namespace App\Models\Traits;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;

@@ -7,11 +7,13 @@ use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\Tag;
 
 Route::get('/', function () {
     return view('welcome', [
         "posts" => Post::public()->with('tags')->get(),
         "projects" => Project::public()->with('tags')->get(),
+        "tags" => Tag::public()->get()
     ]);
 });
 
