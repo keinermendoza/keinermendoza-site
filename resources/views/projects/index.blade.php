@@ -3,10 +3,12 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Projetos') }}
         </h2>
+        <x-ui.link-primary href="{{ route('projects.create') }}" >Novo</x-ui.link-primary >
+
     </x-slot>
 
     <x-table-generic 
         :collection="$projects"
-        route_prefix="projects"
+        prefix="project"
     />
 </x-app-layout>

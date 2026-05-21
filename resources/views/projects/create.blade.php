@@ -1,40 +1,38 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{$project->title}}
+            {{ __('Projetos') }}
         </h2>
         <x-ui.link-primary href="{{ route('projects.create') }}" >Novo</x-ui.link-primary >
     </x-slot>
 
-    <form method="POST" action="{{ $project->get_update_url() }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
         @csrf
-        @method("PUT")
 
         <!-- title -->
         <div>
             <x-input-label for="title" value="title" />
-            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title', $project->title)" required autofocus />
+            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 
         <!-- slug -->
         <div>
             <x-input-label for="slug" value="slug" />
-            <x-text-input id="slug" class="block mt-1 w-full" type="text" name="slug" :value="old('slug', $project->slug)" required />
+            <x-text-input id="slug" class="block mt-1 w-full" type="text" name="slug" :value="old('slug')" required />
             <x-input-error :messages="$errors->get('slug')" class="mt-2" />
         </div>
-        
+
         <!-- image -->
-        <img class="w-full max-w-lg" src="{{ $project->image_url }}" alt="imagem de projeto {{ $project->title }}">
         <div class="mt-4">
-            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" />
+            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"/>
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
         <!-- content -->
         <div class="mt-4">
             <x-input-label for="content" value="content" />
-            <x-textarea id="content" class="block mt-1 w-full" type="content" name="content" :value="old('content', $project->content)" />
+            <x-textarea id="content" class="block mt-1 w-full" type="content" name="content" :value="old('content')" />
             <x-input-error :messages="$errors->get('content')" class="mt-2" />
         </div>
 
@@ -46,14 +44,13 @@
                 name="is_public" 
                 type="checkbox" 
                 value="1"
-                {{ old('is_public', $project->is_public) ? 'checked' : '' }} 
+                {{ old('is_public') ? 'checked' : '' }} 
                 class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
                 <x-input-label for="is_public" value="Mostrar no site" />
             </div>
             <x-input-error :messages="$errors->get('is_public')" class="mt-2" />
         </div>
 
-    
         <script>
             const titleInput = document.getElementById("title");
             const slugInput = document.getElementById("slug");

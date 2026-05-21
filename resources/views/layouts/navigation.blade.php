@@ -46,9 +46,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                    
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            Perfil
                         </x-dropdown-link>
+
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -92,6 +94,18 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('projects.index')">
+                    Projetos
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('posts.index')">
+                    Posts
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('tags.index')">
+                    Tags
+                </x-responsive-nav-link>
+
+
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

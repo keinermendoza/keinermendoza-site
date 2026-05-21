@@ -23,7 +23,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create', [
+            'endpoint' => route("projects.store")
+        ]); 
     }
 
     /**
@@ -31,7 +33,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            "title" => ["required"],
+            "slug" => ["required", "unique:projects,slug", "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
+            "content" => ["nullable"],
+            "is_public" => ["boolean"],
+            "image" => ["nullable", "image", "max:2048"],
+        ]);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('projects', 'public');
+            $data["image"] = $path;
+        }
+        $data["is_public"] = $request->boolean("is_public");
+        Project::create($data);
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -58,12 +73,21 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $data = $request->validate([
+            "title" => ["required"],
+            "slug" => ["required", "unique:projects,slug," . $project->id , "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
+            "content" => ["nullable"],
+            "is_public" => ["boolean"],
+            "image" => ["nullable", "image", "max:2048"],
+        ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('projects', 'public');
-            $project->image = $path;
-            $project->save();
+            $data["image"] = $path;
         }
-        return redirect()->route('projects.index');
+        $data["is_public"] = $request->boolean("is_public");
+        $project->update($data);
+        $project->save();
+        return redirect($project->get_edit_url());
     }
 
     /**
@@ -71,6 +95,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }

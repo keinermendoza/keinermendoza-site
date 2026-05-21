@@ -25,8 +25,11 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     
         Route::prefix('projects')->name('projects.')->group(function () { 
             Route::get('/', [ProjectController::class, 'index'])->name('index');
+            Route::post('/', [ProjectController::class, 'store'])->name('store');
+            Route::get('/create', [ProjectController::class, 'create'])->name('create');
             Route::get('/{project}', [ProjectController::class, 'edit'])->name('edit');
-            Route::patch('/{project}', [ProjectController::class, 'update'])->name('update');
+            Route::put('/{project}', [ProjectController::class, 'update'])->name('update');
+            Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('destroy');
         });
 
         Route::prefix('posts')->name('posts.')->group(function () { 
