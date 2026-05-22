@@ -1,30 +1,35 @@
 @props([
-    "prefix",
-    "is_create" => false,
-    "instance" => null
+    "title",
+    "index_url" => "",
+    "edit_title" => "",
+    "create_url" => "",
 ])
 
 <x-app-layout>
     <x-slot name="header">
         <div class="text-gray-800 dark:text-gray-200">
             <h2 class="font-semibold mb-2 text-xl leading-tight">
-                {{ Str::title($prefix) }}
+                {{ $title }}
             </h2>
             <div class="flex gap-2 items-center">
-                <a class="underline underline-offset-4" href="{{ route($prefix . 'index') }}" >Ver todos</a>
-                @if($instance)
+                @if($index_url) 
+                <a class=" underline underline-offset-4" href="{{ $index_url }}" >Ver todos</a>
+                @else
+                <span class="text-gray-600 dark:text-gray-400" >Ver todos</span>
+                @endif
+
+                @if($edit_title)
                 <span>&gt;</span>
-                <span class="text-gray-600 dark:text-gray-400">{{$instance->title}}</span>
+                <span class="text-gray-600 dark:text-gray-400">{{$edit_title}}</span>
                 @endif
             </div>
         </div>
-        <x-ui.link-primary
-            @if($is_create) 
-            href="#"
-            @else 
-            href="{{ route($prefix . 'create') }}"
-            @endif
-        >Novo</x-ui.link-primary>
+        @if($create_url) 
+        <x-ui.link-primary href="{{ $create_url }}">Novo</x-ui.link-primary>
+        @else 
+        <x-ui.link-primary href="#">Novo</x-ui.link-primary>
+        @endif
+        
     </x-slot>
 
     {{ $slot }}

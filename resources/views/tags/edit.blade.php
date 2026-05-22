@@ -1,4 +1,4 @@
-<x-dashboard-generic prefix="tags" :instance="$tag">
+<x-dashboard-generic title="Tags" edit_title="{{ $tag->title }}" index_url="{{ route('tags.index') }}" create_url="{{ route('tags.create') }}">
 
     <form method="POST" action="{{ $tag->get_update_url() }}" enctype="multipart/form-data">
         @csrf

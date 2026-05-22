@@ -30,30 +30,34 @@
                                     </div>
                                 </x-table.td>
                                 <x-table.td>
-                                    <img width="50" src="{{ asset('storage/' . $instance->image) }}" alt="">
+                                    <img width="50" src="{{ $instance->image_url }}" alt="">
                                 </x-table.td>
                                 <x-table.td>{{ $instance->updated_at }}</x-table.td>
                                 <x-table.td>
-                                    <a href="{{ $instance->get_edit_url() }}" class="text-blue-500">Editar</a>
+                                    <div class="flex h-full items-center gap-4">
 
-                                    <button @click="{{ $flag_show_destroy }} = true" class="text-red-500">Deletar</button>
+                                        <a href="{{ $instance->get_edit_url() }}" class="text-blue-500">Editar</a>
+
+                                        <button @click="{{ $flag_show_destroy }} = true" class="text-red-500">Deletar</button>
+                                        
+                                        <template x-teleport="body">
+                                            <div x-show="{{ $flag_show_destroy }}" class="fixed inset-0 bg-black/50 flex items-center justify-center">
+                                                <form class="bg-white p-4 rounded" method="POST" action="{{ $instance->get_destroy_url() }}">
+
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    <p>¿Estás seguro?</p>
+
+                                                    <button type="button" @click="{{ $flag_show_destroy }} = false">Cancelar</button>
+
+                                                    <button type="submit" class="text-red-500">
+                                                        Confirmar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </template>
+                                    </div>
                                     
-                                    <template x-teleport="body">
-                                        <div x-show="{{ $flag_show_destroy }}" class="fixed inset-0 bg-black/50 flex items-center justify-center">
-                                            <form class="bg-white p-4 rounded" method="POST" action="{{ $instance->get_destroy_url() }}">
-
-                                                @csrf
-                                                @method("DELETE")
-                                                <p>¿Estás seguro?</p>
-
-                                                <button type="button" @click="{{ $flag_show_destroy }} = false">Cancelar</button>
-
-                                                <button type="submit" class="text-red-500">
-                                                    Confirmar
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </template>
                                 </x-table.td>
                             </x-table.tr>
                         @endforeach

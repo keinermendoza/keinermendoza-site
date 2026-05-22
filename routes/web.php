@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\AssetController;
+
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Project;
@@ -41,7 +43,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
             Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
         });
 
-
         Route::prefix('tags')->name('tags.')->group(function () { 
             Route::get('/', [TagController::class, 'index'])->name('index');
             Route::post('/', [TagController::class, 'store'])->name('store');
@@ -49,6 +50,15 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
             Route::get('/{tag}', [TagController::class, 'edit'])->name('edit');
             Route::put('/{tag}', [TagController::class, 'update'])->name('update');
             Route::delete('/{tag}', [TagController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('assets')->name('assets.')->group(function () { 
+            Route::get('/', [AssetController::class, 'index'])->name('index');
+            Route::post('/', [AssetController::class, 'store'])->name('store');
+            Route::get('/create', [AssetController::class, 'create'])->name('create');
+            Route::get('/{asset}', [AssetController::class, 'edit'])->name('edit');
+            Route::put('/{asset}', [AssetController::class, 'update'])->name('update');
+            Route::delete('/{asset}', [AssetController::class, 'destroy'])->name('destroy');
         });
 
     });

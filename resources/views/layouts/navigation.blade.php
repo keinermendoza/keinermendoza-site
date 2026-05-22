@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags')">
                         Tags
                     </x-nav-link>
+                    <x-nav-link :href="route('assets.index')" :active="request()->routeIs('assets')">
+                        Assets
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -105,6 +108,10 @@
                     Tags
                 </x-responsive-nav-link>
 
+
+                <x-responsive-nav-link :href="route('assets.index')">
+                   Assets
+                </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}

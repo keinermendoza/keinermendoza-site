@@ -1,4 +1,5 @@
-<x-dashboard-generic prefix="tags" is_create>
+<x-dashboard-generic title="Tags" index_url="{{ route('tags.index') }}" >
+    
     <form method="POST" action="{{ route('tags.store') }}" enctype="multipart/form-data">
         @csrf
 
@@ -78,4 +79,4 @@
         
     </form>
 
-<x-dashboard-generic>
+</x-dashboard-generic>
