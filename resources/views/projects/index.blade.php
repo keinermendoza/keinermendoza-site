@@ -7,8 +7,5 @@
 
     </x-slot>
 
-    <x-table-generic 
-        :collection="$projects"
-        prefix="project"
-    />
+    <x-table-generic :collection="$projects"/>
 </x-app-layout>

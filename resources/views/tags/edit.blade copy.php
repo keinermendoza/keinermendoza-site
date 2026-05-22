@@ -1,42 +1,41 @@
 <x-app-layout>
     <x-slot name="header">
-        <div>
-            <h2 class="font-semibold mb-2 text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Projetos
-            </h2>
-            <a class="text-gray-800 dark:text-gray-200 underline underline-offset-4" href="{{ route('projects.index') }}" >Ver todos</a>
-        </div>
-        <x-ui.link-primary href="#" >Novo</x-ui.link-primary>
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{$tag->title}}
+        </h2>
+        <x-ui.link-primary href="{{ route('tags.create') }}" >Novo</x-ui.link-primary >
     </x-slot>
 
-    <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ $tag->get_update_url() }}" enctype="multipart/form-data">
         @csrf
+        @method("PUT")
 
         <!-- title -->
         <div>
             <x-input-label for="title" value="title" />
-            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />
+            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title', $tag->title)" required autofocus />
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 
         <!-- slug -->
         <div>
             <x-input-label for="slug" value="slug" />
-            <x-text-input id="slug" class="block mt-1 w-full" type="text" name="slug" :value="old('slug')" required />
+            <x-text-input id="slug" class="block mt-1 w-full" type="text" name="slug" :value="old('slug', $tag->slug)" required />
             <x-input-error :messages="$errors->get('slug')" class="mt-2" />
         </div>
-
+        
         <!-- image -->
+        <img class="w-full max-w-lg" src="{{ $tag->image_url }}" alt="imagem de projeto {{ $tag->title }}">
         <div class="mt-4">
-            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"/>
+            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" />
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
-        <!-- content -->
+        <!-- description -->
         <div class="mt-4">
-            <x-input-label for="content" value="content" />
-            <x-textarea id="content" class="block mt-1 w-full" type="content" name="content" :value="old('content')" />
-            <x-input-error :messages="$errors->get('content')" class="mt-2" />
+            <x-input-label for="description" value="description" />
+            <x-textarea id="description" class="block mt-1 w-full" type="description" name="description" :value="old('description', $tag->description)" />
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
         <!-- is_public -->
@@ -47,13 +46,14 @@
                 name="is_public" 
                 type="checkbox" 
                 value="1"
-                {{ old('is_public') ? 'checked' : '' }} 
+                {{ old('is_public', $tag->is_public) ? 'checked' : '' }} 
                 class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
                 <x-input-label for="is_public" value="Mostrar no site" />
             </div>
             <x-input-error :messages="$errors->get('is_public')" class="mt-2" />
         </div>
 
+    
         <script>
             const titleInput = document.getElementById("title");
             const slugInput = document.getElementById("slug");
@@ -78,22 +78,6 @@
             }
         </script>
 
-        {{-- <fieldset>
-            <legend>Tags</legend>
-            <ul>
-            @foreach($tags as $tag)
-                <li>
-                    <input type="radio" value="2" id="address-switch_2" /><label
-                  for="address-switch_2"
-                  ><input
-                    type="text"
-                    value="1000 Coney Island Ave. Brooklyn NY 11230"
-                /></label>
-                </li>
-            @endforeach
-            </ul>
-
-        </fieldset> --}}
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ms-4">

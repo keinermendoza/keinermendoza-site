@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class TagController extends Controller
 {
-    /**
+/**
      * Display a listing of the resource.
      */
     public function index()
@@ -23,7 +23,9 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tags.create', [
+            'endpoint' => route("tags.store")
+        ]); 
     }
 
     /**
@@ -31,7 +33,20 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            "title" => ["required"],
+            "slug" => ["required", "unique:tags,slug", "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
+            "description" => ["nullable", "string"],
+            "is_public" => ["boolean"],
+            "image" => ["nullable", "image", "max:2048"],
+        ]);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('tags', 'public');
+            $data["image"] = $path;
+        }
+        $data["is_public"] = $request->boolean("is_public");
+        Tag::create($data);
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -58,12 +73,21 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        $data = $request->validate([
+            "title" => ["required"],
+            "slug" => ["required", "unique:tags,slug," . $tag->id , "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
+            "description" => ["nullable", "string"],
+            "is_public" => ["boolean"],
+            "image" => ["nullable", "image", "max:2048"],
+        ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('tags', 'public');
-            $tag->image = $path;
-            $tag->save();
+            $data["image"] = $path;
         }
-        return redirect()->route('tags.index');
+        $data["is_public"] = $request->boolean("is_public");
+        $tag->update($data);
+        $tag->save();
+        return redirect($tag->get_edit_url());
     }
 
     /**
@@ -71,6 +95,14 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        if($tag->canBeDeleted()) {
+            $tag->delete();
+            return redirect()->route('tags.index');
+        }
+        
+        return back()->withErrors([
+            'error' => "Para apagar a tag \"{$tag->title}\" precisa primeiro deletar as instancias a seguir: {$tag->getRelationedIntanceTitles()}"  
+        ]);
+
     }
 }

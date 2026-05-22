@@ -1,15 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div>
-            <h2 class="font-semibold mb-2 text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Projetos
-            </h2>
-            <a class="text-gray-800 dark:text-gray-200 underline underline-offset-4" href="{{ route('projects.index') }}" >Ver todos</a>
-        </div>
-        <x-ui.link-primary href="#" >Novo</x-ui.link-primary>
-    </x-slot>
-
-    <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
+<x-dashboard-generic prefix="tags" is_create>
+    <form method="POST" action="{{ route('tags.store') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- title -->
@@ -32,11 +22,11 @@
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
-        <!-- content -->
+        <!-- description -->
         <div class="mt-4">
-            <x-input-label for="content" value="content" />
-            <x-textarea id="content" class="block mt-1 w-full" type="content" name="content" :value="old('content')" />
-            <x-input-error :messages="$errors->get('content')" class="mt-2" />
+            <x-input-label for="description" value="description" />
+            <x-textarea id="description" class="block mt-1 w-full" type="description" name="description" :value="old('description')" />
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
         <!-- is_public -->
@@ -78,22 +68,6 @@
             }
         </script>
 
-        {{-- <fieldset>
-            <legend>Tags</legend>
-            <ul>
-            @foreach($tags as $tag)
-                <li>
-                    <input type="radio" value="2" id="address-switch_2" /><label
-                  for="address-switch_2"
-                  ><input
-                    type="text"
-                    value="1000 Coney Island Ave. Brooklyn NY 11230"
-                /></label>
-                </li>
-            @endforeach
-            </ul>
-
-        </fieldset> --}}
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ms-4">
@@ -104,7 +78,4 @@
         
     </form>
 
-
-</x-app-layout>
-
-
+<x-dashboard-generic>

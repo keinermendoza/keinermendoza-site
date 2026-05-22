@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
-    /**
+/**
      * Display a listing of the resource.
      */
     public function index()
@@ -23,7 +23,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create', [
+            'endpoint' => route("posts.store")
+        ]); 
     }
 
     /**
@@ -31,7 +33,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            "title" => ["required"],
+            "slug" => ["required", "unique:posts,slug", "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
+            "content" => ["nullable"],
+            "is_public" => ["boolean"],
+            "image" => ["nullable", "image", "max:2048"],
+        ]);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('posts', 'public');
+            $data["image"] = $path;
+        }
+        $data["is_public"] = $request->boolean("is_public");
+        Post::create($data);
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -58,12 +73,21 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $data = $request->validate([
+            "title" => ["required"],
+            "slug" => ["required", "unique:posts,slug," . $post->id , "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
+            "content" => ["nullable"],
+            "is_public" => ["boolean"],
+            "image" => ["nullable", "image", "max:2048"],
+        ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('posts', 'public');
-            $post->image = $path;
-            $post->save();
+            $data["image"] = $path;
         }
-        return redirect()->route('posts.index');
+        $data["is_public"] = $request->boolean("is_public");
+        $post->update($data);
+        $post->save();
+        return redirect($post->get_edit_url());
     }
 
     /**
@@ -71,6 +95,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

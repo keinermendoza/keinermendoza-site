@@ -1,8 +1,8 @@
 @props([
     "collection",
-    "prefix"
+    "prefix" => ""
 ])
-<div class="py-12" x-data>
+<div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -12,7 +12,7 @@
                     <x-table.head>
                         <x-table.th>Titulo</x-table.th>
                         <x-table.th>Imagem</x-table.th>
-                        <x-table.th>Creado en</x-table.th>
+                        <x-table.th>Atualizado em</x-table.th>
                         <x-table.th>Acciones</x-table.th>
                     </x-table.head>
 
@@ -32,7 +32,7 @@
                                 <x-table.td>
                                     <img width="50" src="{{ asset('storage/' . $instance->image) }}" alt="">
                                 </x-table.td>
-                                <x-table.td>{{ $instance->created_at }}</x-table.td>
+                                <x-table.td>{{ $instance->updated_at }}</x-table.td>
                                 <x-table.td>
                                     <a href="{{ $instance->get_edit_url() }}" class="text-blue-500">Editar</a>
 

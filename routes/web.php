@@ -34,20 +34,21 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
         Route::prefix('posts')->name('posts.')->group(function () { 
             Route::get('/', [PostController::class, 'index'])->name('index');
+            Route::post('/', [PostController::class, 'store'])->name('store');
+            Route::get('/create', [PostController::class, 'create'])->name('create');
             Route::get('/{post}', [PostController::class, 'edit'])->name('edit');
-            Route::patch('/{post}', [PostController::class, 'update'])->name('update');
+            Route::put('/{post}', [PostController::class, 'update'])->name('update');
+            Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('projects')->name('projects.')->group(function () { 
-            Route::get('/', [ProjectController::class, 'index'])->name('index');
-            Route::get('/{project}', [ProjectController::class, 'edit'])->name('edit');
-            Route::patch('/{project}', [ProjectController::class, 'update'])->name('update');
-        });
 
         Route::prefix('tags')->name('tags.')->group(function () { 
             Route::get('/', [TagController::class, 'index'])->name('index');
+            Route::post('/', [TagController::class, 'store'])->name('store');
+            Route::get('/create', [TagController::class, 'create'])->name('create');
             Route::get('/{tag}', [TagController::class, 'edit'])->name('edit');
-            Route::patch('/{tag}', [TagController::class, 'update'])->name('update');
+            Route::put('/{tag}', [TagController::class, 'update'])->name('update');
+            Route::delete('/{tag}', [TagController::class, 'destroy'])->name('destroy');
         });
 
     });

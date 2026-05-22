@@ -1,9 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{$project->title}}
-        </h2>
-        <x-ui.link-primary href="{{ route('projects.create') }}" >Novo</x-ui.link-primary >
+        <div class="text-gray-800 dark:text-gray-200">
+            <h2 class="font-semibold mb-2 text-xl leading-tight">
+                Projetos
+            </h2>
+            <div class="flex gap-2 items-center">
+                <a class=" underline underline-offset-4" href="{{ route('projects.index') }}" >Ver todos</a>
+                <span>&gt;</span>
+                <span class="text-gray-600 dark:text-gray-400">{{$project->title}}</span>
+            </div>
+        </div>
+        <x-ui.link-primary href="{{ route('projects.create') }}" >Novo</x-ui.link-primary>
     </x-slot>
 
     <form method="POST" action="{{ $project->get_update_url() }}" enctype="multipart/form-data">
