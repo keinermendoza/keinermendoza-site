@@ -1,4 +1,4 @@
-<x-dashboard-generic title="Tags" edit_title="{{ $tag->title }}" index_url="{{ route('tags.index') }}" create_url="{{ route('tags.create') }}">
+<x-dashboard-generic-resource title="Tags" type="edit" resource="tags" :instance="$tag">
 
     <form method="POST" action="{{ $tag->get_update_url() }}" enctype="multipart/form-data">
         @csrf
@@ -48,30 +48,7 @@
         </div>
 
     
-        <script>
-            const titleInput = document.getElementById("title");
-            const slugInput = document.getElementById("slug");
-
-            function generateSlug(text) {
-                return text
-                    .toLowerCase()
-                    .trim()
-                    // reemplaza acentos
-                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                    // reemplaza cualquier cosa que no sea a-z o 0-9 por "-"
-                    .replace(/[^a-z0-9]+/g, "-")
-                    // elimina guiones al inicio y final
-                    .replace(/^-+|-+$/g, "")
-                    // evita múltiples guiones consecutivos (aunque tu regex los permite)
-                    .replace(/-+/g, "-");
-            }
-
-            titleInput.oninput = () => {
-                console.log(titleInput.value)
-                slugInput.value = generateSlug(titleInput.value);  
-            }
-        </script>
-
+       
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ms-4">
@@ -82,4 +59,4 @@
         
     </form>
 
-</x-dashboard-generic>
+</x-dashboard-generic-resource>

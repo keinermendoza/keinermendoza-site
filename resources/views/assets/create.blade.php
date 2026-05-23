@@ -1,5 +1,4 @@
-<x-dashboard-generic title="Assets" index_url="{{ route('assets.index') }}" >
-
+<x-dashboard-generic-resource title="Postagens" type="create" resource="assets">
     <form method="POST" action="{{ route('assets.store') }}" enctype="multipart/form-data">
         @csrf
 
@@ -15,14 +14,12 @@
             <x-text-input id="file" class="block mt-1 w-full" type="file" name="file"/>
             <x-input-error :messages="$errors->get('file')" class="mt-2" />
         </div>
-
        
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ms-4">
                 Salvar
             </x-primary-button>
         </div>
-
         
     </form>
 

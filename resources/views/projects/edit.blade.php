@@ -1,22 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="text-gray-800 dark:text-gray-200">
-            <h2 class="font-semibold mb-2 text-xl leading-tight">
-                Projetos
-            </h2>
-            <div class="flex gap-2 items-center">
-                <a class=" underline underline-offset-4" href="{{ route('projects.index') }}" >Ver todos</a>
-                <span>&gt;</span>
-                <span class="text-gray-600 dark:text-gray-400">{{$project->title}}</span>
-            </div>
-        </div>
-        <x-ui.link-primary href="{{ route('projects.create') }}" >Novo</x-ui.link-primary>
-    </x-slot>
-
-    <form method="POST" action="{{ $project->get_update_url() }}" enctype="multipart/form-data">
-        @csrf
-        @method("PUT")
-
+<x-dashboard-generic-resource title="Projetos" resource="projects" type="edit" :instance="$project">
+    @section("left")
         <!-- title -->
         <div>
             <x-input-label for="title" value="title" />
@@ -59,59 +42,12 @@
             </div>
             <x-input-error :messages="$errors->get('is_public')" class="mt-2" />
         </div>
+    @endsection
 
-    
-        <script>
-            const titleInput = document.getElementById("title");
-            const slugInput = document.getElementById("slug");
-
-            function generateSlug(text) {
-                return text
-                    .toLowerCase()
-                    .trim()
-                    // reemplaza acentos
-                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                    // reemplaza cualquier cosa que no sea a-z o 0-9 por "-"
-                    .replace(/[^a-z0-9]+/g, "-")
-                    // elimina guiones al inicio y final
-                    .replace(/^-+|-+$/g, "")
-                    // evita múltiples guiones consecutivos (aunque tu regex los permite)
-                    .replace(/-+/g, "-");
-            }
-
-            titleInput.oninput = () => {
-                console.log(titleInput.value)
-                slugInput.value = generateSlug(titleInput.value);  
-            }
-        </script>
-
-        {{-- <fieldset>
-            <legend>Tags</legend>
-            <ul>
-            @foreach($tags as $tag)
-                <li>
-                    <input type="radio" value="2" id="address-switch_2" /><label
-                  for="address-switch_2"
-                  ><input
-                    type="text"
-                    value="1000 Coney Island Ave. Brooklyn NY 11230"
-                /></label>
-                </li>
-            @endforeach
-            </ul>
-
-        </fieldset> --}}
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ms-4">
-                Salvar
-            </x-primary-button>
-        </div>
-
-        
-    </form>
-
-
-</x-app-layout>
+    @section("right")
+    <x-related-tags :tags="$tags" :instance="$project" />
+    @endsection
+     
+</x-dashboard-generic-resource>
 
 

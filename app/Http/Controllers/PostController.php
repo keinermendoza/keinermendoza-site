@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -23,8 +24,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create', [
-            'endpoint' => route("posts.store")
+        return view("posts.create", [
+            "endpoint" => route("posts.store"),
+            "tags" => Tag::orderBy("title", "asc")->get()
         ]); 
     }
 
@@ -45,7 +47,9 @@ class PostController extends Controller
             $data["image"] = $path;
         }
         $data["is_public"] = $request->boolean("is_public");
-        Post::create($data);
+        $post = Post::create($data);
+        $post->tags()->sync($data["tags"] ?? []);
+
         return redirect()->route('posts.index');
     }
 
@@ -64,6 +68,7 @@ class PostController extends Controller
     {
         return view('posts.edit', [
             'post' => $post,
+            "tags" => Tag::orderBy("title", "asc")->get(),
             'endpoint' => route("posts.update", $post->id)
         ]); 
     }
@@ -79,6 +84,8 @@ class PostController extends Controller
             "content" => ["nullable"],
             "is_public" => ["boolean"],
             "image" => ["nullable", "image", "max:2048"],
+            "tags" => ["nullable", "array"],
+            "tags.*" => ["exists:tags,id"],
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('posts', 'public');
@@ -87,6 +94,7 @@ class PostController extends Controller
         $data["is_public"] = $request->boolean("is_public");
         $post->update($data);
         $post->save();
+        $post->tags()->sync($data["tags"] ?? []);
         return redirect($post->get_edit_url());
     }
 

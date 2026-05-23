@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Tag;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -24,7 +26,8 @@ class ProjectController extends Controller
     public function create()
     {
         return view('projects.create', [
-            'endpoint' => route("projects.store")
+            "tags" => Tag::orderBy('title', 'asc')->get(),
+            "endpoint" => route("projects.store")
         ]); 
     }
 
@@ -39,13 +42,17 @@ class ProjectController extends Controller
             "content" => ["nullable"],
             "is_public" => ["boolean"],
             "image" => ["nullable", "image", "max:2048"],
+            "tags" => ["nullable", "array"],
+            "tags.*" => ["exists:tags,id"],
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('projects', 'public');
             $data["image"] = $path;
         }
         $data["is_public"] = $request->boolean("is_public");
-        Project::create($data);
+        $project = Project::create($data);
+        $project->tags()->sync($data["tags"] ?? []);
+
         return redirect()->route('projects.index');
     }
 
@@ -64,6 +71,7 @@ class ProjectController extends Controller
     {
         return view('projects.edit', [
             'project' => $project,
+            "tags" => Tag::orderBy('title', 'asc')->get(),
             'endpoint' => route("projects.update", $project->id)
         ]); 
     }
@@ -79,6 +87,8 @@ class ProjectController extends Controller
             "content" => ["nullable"],
             "is_public" => ["boolean"],
             "image" => ["nullable", "image", "max:2048"],
+            "tags" => ["nullable", "array"],
+            "tags.*" => ["exists:tags,id"],
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('projects', 'public');
@@ -87,6 +97,7 @@ class ProjectController extends Controller
         $data["is_public"] = $request->boolean("is_public");
         $project->update($data);
         $project->save();
+        $project->tags()->sync($data["tags"] ?? []);
         return redirect($project->get_edit_url());
     }
 

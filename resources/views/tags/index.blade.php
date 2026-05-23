@@ -1,6 +1,6 @@
-<x-dashboard-generic title="Tags" create_url="{{ route('tags.create') }}">
+<x-dashboard-generic-resource title="Tags" type="index" resource="tags">
     <x-table-generic 
         :collection="$tags"
         route_prefix="tags"
     />
-</x-dashboard-generic>
+</x-dashboard-generic-resource>

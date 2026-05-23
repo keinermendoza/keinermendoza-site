@@ -1,5 +1,4 @@
-<x-dashboard-generic title="assets" edit_title="{{ $asset->title }}" index_url="{{ route('assets.index') }}" create_url="{{ route('assets.create') }}">
-
+<x-dashboard-generic-resource title="Postagens" type="index" resource="assets">
 
     <form method="POST" action="{{ $asset->get_update_url() }}" enctype="multipart/form-data">
         @csrf

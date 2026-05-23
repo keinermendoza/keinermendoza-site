@@ -30,8 +30,7 @@ class Post extends Model
         return route('posts.destroy', [$this->id]);
     }
 
-
     public function tags() {
-        return $this->belongsToMany(Tag::class, "tags_posts")->public();
+        return $this->belongsToMany(Tag::class, "tags_posts");
     }
 }
