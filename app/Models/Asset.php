@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 
 class Asset extends Model
 {
@@ -15,6 +17,12 @@ class Asset extends Model
         "path",
         "type"
     ];
+
+    #[Scope]
+    protected function images(Builder $query): void
+    {
+        $query->where('type', "image");
+    }
 
     public function get_edit_url() {
         return route('assets.edit', [$this->id]);
@@ -34,10 +42,10 @@ class Asset extends Model
 
     public function isImage(): bool
     {
-        return $this->type === "image"; 
+        return $this->type === "image";
     }
 
-    protected function imageURL(): Attribute 
+    protected function imageURL(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->isImage() ? asset("storage/" . $this->path) : null

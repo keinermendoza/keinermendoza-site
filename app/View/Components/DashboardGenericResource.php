@@ -20,17 +20,19 @@ class DashboardGenericResource extends Component
     public string $index_url;
     public string $create_url;
     public string $store_url;
+    public bool $avoidForm;
     public ?string $edit_title = null;
     public ?string $edit_url = null;
     public ?stdClass $instance = null;
-    
+
     /**
      * Create a new component instance.
      */
-    public function __construct(string $resource, string $type, string $title, $instance = null)
+    public function __construct(string $resource, string $type, string $title, $instance = null, $avoidForm = false)
     {
         $this->title = $title;
         $this->type = $type;
+        $this->avoidForm = $avoidForm;
         $this->index_url = route($resource . ".index");
         $this->create_url = route($resource . ".create");
         $this->store_url = route($resource . ".store");
@@ -38,7 +40,7 @@ class DashboardGenericResource extends Component
         if(!in_array($type, $this->availableTypes)) {
             throw new \Exception("you need to specify the 'type': 'index', 'edit', 'create'");
         }
-        
+
         if($type === "edit" && $instance === null){
             throw new \Exception("'edit' type requires you to provide an instance");
         }

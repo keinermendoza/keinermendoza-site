@@ -5,7 +5,7 @@
                 {{ $title }}
             </h2>
             <div class="flex gap-2 items-center">
-                @if($type === "create" || $type === "edit" ) 
+                @if($type === "create" || $type === "edit" )
                 <a class=" underline underline-offset-4" href="{{ $index_url }}" >Ver todos</a>
                 @else
                 <span class="text-gray-600 dark:text-gray-400" >Ver todos</span>
@@ -17,45 +17,48 @@
                 @endif
             </div>
         </div>
-        @if($type === "index" || $type === "edit") 
+        @if($type === "index" || $type === "edit")
         <x-ui.link-primary href="{{ $create_url }}">Novo</x-ui.link-primary>
-        @else 
+        @else
         <x-ui.link-primary href="#">Novo</x-ui.link-primary>
         @endif
-        
+
     </x-slot>
 
-    @if($type === "edit")
-    <form method="POST" action="{{ $edit_url }}" enctype="multipart/form-data">
-        @csrf
-        @method("PUT")
+    @unless($avoidForm)
+        @if($type === "edit")
+        <form method="POST" action="{{ $edit_url }}" enctype="multipart/form-data">
+            @csrf
+            @method("PUT")
 
-    @elseif($type === "create")
-    <form method="POST" action="{{ $store_url }}" enctype="multipart/form-data">
-        @csrf
-    @endif
+        @elseif($type === "create")
+        <form method="POST" action="{{ $store_url }}" enctype="multipart/form-data">
+            @csrf
+        @endif
 
-        <div class="flex flex-col md:flex-row gap-4 text-gray-800 dark:text-gray-200 leading-tight">
-            <div class="flex-grow">
-                @yield('left')
+            <div class="flex flex-col md:flex-row gap-4 text-gray-800 dark:text-gray-200 leading-tight">
+                <div class="flex-grow">
+                    @yield('left')
+                </div>
+                <fieldset class="min-w-80">
+                    @yield('right')
+                </fieldset>
             </div>
-            <fieldset class="min-w-80">
-                @yield('right')
-            </fieldset>
-        </div>
 
-    @if($type === "create" || $type === "edit")
+        @if($type === "create" || $type === "edit")
 
-        <div class="flex items-center mt-4">
-            <x-primary-button >
-                Salvar
-            </x-primary-button>
-        </div>
+            <div class="flex items-center mt-4">
+                <x-primary-button >
+                    Salvar
+                </x-primary-button>
+            </div>
 
-    </form>
-    @endif
+        </form>
+        @endif
+    @endunless
+
     {{ $slot }}
-    
+
     {{-- slug automcomplete --}}
     <script>
         const titleInput = document.getElementById("title");
@@ -77,9 +80,10 @@
 
             titleInput.oninput = () => {
                 console.log(titleInput.value)
-                slugInput.value = generateSlug(titleInput.value);  
+                slugInput.value = generateSlug(titleInput.value);
             }
         }
     </script>
+    @stack("scripts")
 
 </x-app-layout>

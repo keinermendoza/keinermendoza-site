@@ -1,5 +1,5 @@
-<x-dashboard-generic-resource title="Postagens" type="index" resource="assets">
-    <x-table-generic 
+<x-dashboard-generic-resource title="Arquivos" type="index" resource="assets">
+    <x-table-generic
         :collection="$assets"
         route_prefix="assets"
     />

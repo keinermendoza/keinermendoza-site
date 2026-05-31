@@ -5,6 +5,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\Api\ImageController;
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -20,12 +21,12 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    Route::prefix('dashboard')->group(function () { 
+    Route::prefix('dashboard')->group(function () {
         Route::get('/', function() {
             return view('dashboard');
         })->name('dashboard');
-    
-        Route::prefix('projects')->name('projects.')->group(function () { 
+
+        Route::prefix('projects')->name('projects.')->group(function () {
             Route::get('/', [ProjectController::class, 'index'])->name('index');
             Route::post('/', [ProjectController::class, 'store'])->name('store');
             Route::get('/create', [ProjectController::class, 'create'])->name('create');
@@ -34,7 +35,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
             Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('posts')->name('posts.')->group(function () { 
+        Route::prefix('posts')->name('posts.')->group(function () {
             Route::get('/', [PostController::class, 'index'])->name('index');
             Route::post('/', [PostController::class, 'store'])->name('store');
             Route::get('/create', [PostController::class, 'create'])->name('create');
@@ -43,7 +44,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
             Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('tags')->name('tags.')->group(function () { 
+        Route::prefix('tags')->name('tags.')->group(function () {
             Route::get('/', [TagController::class, 'index'])->name('index');
             Route::post('/', [TagController::class, 'store'])->name('store');
             Route::get('/create', [TagController::class, 'create'])->name('create');
@@ -52,13 +53,18 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
             Route::delete('/{tag}', [TagController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('assets')->name('assets.')->group(function () { 
+        Route::prefix('assets')->name('assets.')->group(function () {
             Route::get('/', [AssetController::class, 'index'])->name('index');
             Route::post('/', [AssetController::class, 'store'])->name('store');
             Route::get('/create', [AssetController::class, 'create'])->name('create');
             Route::get('/{asset}', [AssetController::class, 'edit'])->name('edit');
             Route::put('/{asset}', [AssetController::class, 'update'])->name('update');
             Route::delete('/{asset}', [AssetController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('images')->name('images.')->group(function () {
+            Route::get('/', [ImageController::class, 'index'])->name('index');
+            Route::post('/', [ImageController::class, 'store'])->name('store');
         });
 
     });

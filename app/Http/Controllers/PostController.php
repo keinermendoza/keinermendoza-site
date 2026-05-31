@@ -16,7 +16,7 @@ class PostController extends Controller
     {
         return view('posts.index', [
             'posts' => Post::all()
-        ]); 
+        ]);
     }
 
     /**
@@ -27,7 +27,7 @@ class PostController extends Controller
         return view("posts.create", [
             "endpoint" => route("posts.store"),
             "tags" => Tag::orderBy("title", "asc")->get()
-        ]); 
+        ]);
     }
 
     /**
@@ -40,12 +40,9 @@ class PostController extends Controller
             "slug" => ["required", "unique:posts,slug", "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
             "content" => ["nullable"],
             "is_public" => ["boolean"],
-            "image" => ["nullable", "image", "max:2048"],
+            "image" => ["nullable", "string"],
         ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('posts', 'public');
-            $data["image"] = $path;
-        }
+
         $data["is_public"] = $request->boolean("is_public");
         $post = Post::create($data);
         $post->tags()->sync($data["tags"] ?? []);
@@ -70,7 +67,7 @@ class PostController extends Controller
             'post' => $post,
             "tags" => Tag::orderBy("title", "asc")->get(),
             'endpoint' => route("posts.update", $post->id)
-        ]); 
+        ]);
     }
 
     /**
@@ -83,14 +80,11 @@ class PostController extends Controller
             "slug" => ["required", "unique:posts,slug," . $post->id , "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
             "content" => ["nullable"],
             "is_public" => ["boolean"],
-            "image" => ["nullable", "image", "max:2048"],
+            "image" => ["nullable", "string"],
             "tags" => ["nullable", "array"],
             "tags.*" => ["exists:tags,id"],
         ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('posts', 'public');
-            $data["image"] = $path;
-        }
+
         $data["is_public"] = $request->boolean("is_public");
         $post->update($data);
         $post->save();

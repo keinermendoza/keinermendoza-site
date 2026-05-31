@@ -1,4 +1,5 @@
 import './bootstrap';
+import './ImageModal';
 
 import Alpine from 'alpinejs';
 

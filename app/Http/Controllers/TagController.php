@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class TagController extends Controller
 {
@@ -15,7 +14,7 @@ class TagController extends Controller
     {
         return view('tags.index', [
             'tags' => Tag::all()
-        ]); 
+        ]);
     }
 
     /**
@@ -25,7 +24,7 @@ class TagController extends Controller
     {
         return view('tags.create', [
             'endpoint' => route("tags.store")
-        ]); 
+        ]);
     }
 
     /**
@@ -38,12 +37,9 @@ class TagController extends Controller
             "slug" => ["required", "unique:tags,slug", "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
             "description" => ["nullable", "string"],
             "is_public" => ["boolean"],
-            "image" => ["nullable", "image", "max:2048"],
+            "image" => ["nullable", "string"],
         ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('tags', 'public');
-            $data["image"] = $path;
-        }
+
         $data["is_public"] = $request->boolean("is_public");
         Tag::create($data);
         return redirect()->route('tags.index');
@@ -65,7 +61,7 @@ class TagController extends Controller
         return view('tags.edit', [
             'tag' => $tag,
             'endpoint' => route("tags.update", $tag->id)
-        ]); 
+        ]);
     }
 
     /**
@@ -78,12 +74,9 @@ class TagController extends Controller
             "slug" => ["required", "unique:tags,slug," . $tag->id , "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
             "description" => ["nullable", "string"],
             "is_public" => ["boolean"],
-            "image" => ["nullable", "image", "max:2048"],
+            "image" => ["nullable", "string"],
         ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('tags', 'public');
-            $data["image"] = $path;
-        }
+
         $data["is_public"] = $request->boolean("is_public");
         $tag->update($data);
         $tag->save();
@@ -99,9 +92,9 @@ class TagController extends Controller
             $tag->delete();
             return redirect()->route('tags.index');
         }
-        
+
         return back()->withErrors([
-            'error' => "Para apagar a tag \"{$tag->title}\" precisa primeiro deletar as instancias a seguir: {$tag->getRelationedIntanceTitles()}"  
+            'error' => "Para apagar a tag \"{$tag->title}\" precisa primeiro deletar as instancias a seguir: {$tag->getRelationedIntanceTitles()}"
         ]);
 
     }

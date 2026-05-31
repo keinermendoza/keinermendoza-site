@@ -18,8 +18,16 @@
 
     <!-- image -->
     <div class="mt-4">
-        <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"/>
+        <x-input-label for="" value="image" />
+
         <x-input-error :messages="$errors->get('image')" class="mt-2" />
+
+        @php($modalName = "image-gallery")
+        <x-open-image-modal :modalName="$modalName" />
+
+        {{-- campo com url image oculto --}}
+        <x-text-input type="hidden" id="image" class="block mt-1 w-full" name="image"/>
+
     </div>
 
     <!-- content -->
@@ -32,12 +40,12 @@
     <!-- is_public -->
     <div class="mt-4">
         <div class="flex items-center gap-2">
-            <input 
+            <input
             id="is_public"
-            name="is_public" 
-            type="checkbox" 
+            name="is_public"
+            type="checkbox"
             value="1"
-            {{ old('is_public') ? 'checked' : '' }} 
+            {{ old('is_public') ? 'checked' : '' }}
             class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
             <x-input-label for="is_public" value="Mostrar no site" />
         </div>
@@ -48,6 +56,8 @@
     @section("right")
     <x-related-tags :tags="$tags" />
     @endsection
+
+    <x-image-selector-modal :modalName="$modalName" inputId="image" imagePreviewId="image-preview" />
 
 </x-dashboard-generic-resource>
 

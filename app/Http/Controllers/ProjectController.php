@@ -17,7 +17,7 @@ class ProjectController extends Controller
     {
         return view('projects.index', [
             'projects' => Project::all()
-        ]); 
+        ]);
     }
 
     /**
@@ -27,8 +27,9 @@ class ProjectController extends Controller
     {
         return view('projects.create', [
             "tags" => Tag::orderBy('title', 'asc')->get(),
-            "endpoint" => route("projects.store")
-        ]); 
+            "endpoint" => route("projects.store"),
+            "imagesEndpoint" => route("images.index")
+        ]);
     }
 
     /**
@@ -41,14 +42,11 @@ class ProjectController extends Controller
             "slug" => ["required", "unique:projects,slug", "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
             "content" => ["nullable"],
             "is_public" => ["boolean"],
-            "image" => ["nullable", "image", "max:2048"],
+            "image" => ["nullable", "string"],
             "tags" => ["nullable", "array"],
             "tags.*" => ["exists:tags,id"],
         ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('projects', 'public');
-            $data["image"] = $path;
-        }
+
         $data["is_public"] = $request->boolean("is_public");
         $project = Project::create($data);
         $project->tags()->sync($data["tags"] ?? []);
@@ -73,7 +71,7 @@ class ProjectController extends Controller
             'project' => $project,
             "tags" => Tag::orderBy('title', 'asc')->get(),
             'endpoint' => route("projects.update", $project->id)
-        ]); 
+        ]);
     }
 
     /**
@@ -86,14 +84,11 @@ class ProjectController extends Controller
             "slug" => ["required", "unique:projects,slug," . $project->id , "regex:/^[a-z0-9]+(?:(?:-)+[a-z0-9]+)*$/"],
             "content" => ["nullable"],
             "is_public" => ["boolean"],
-            "image" => ["nullable", "image", "max:2048"],
+            "image" => ["nullable", "string"],
             "tags" => ["nullable", "array"],
             "tags.*" => ["exists:tags,id"],
         ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('projects', 'public');
-            $data["image"] = $path;
-        }
+
         $data["is_public"] = $request->boolean("is_public");
         $project->update($data);
         $project->save();
