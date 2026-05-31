@@ -48,7 +48,9 @@ class Asset extends Model
     protected function imageURL(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->isImage() ? asset("storage/" . $this->path) : null
+            get: fn () =>  asset("storage/" . $this->path)
         );
     }
+
+
 }

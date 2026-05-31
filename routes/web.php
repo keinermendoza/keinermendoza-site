@@ -18,12 +18,12 @@ Route::get('/', function () {
         "projects" => Project::public()->with('tags')->get(),
         "tags" => Tag::public()->get()
     ]);
-});
+})->name('welcome');
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', function() {
-            return view('dashboard');
+            return redirect()->route('projects.index');
         })->name('dashboard');
 
         Route::prefix('projects')->name('projects.')->group(function () {

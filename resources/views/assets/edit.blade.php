@@ -1,4 +1,5 @@
 <x-dashboard-generic-resource title="Arquivos" type="edit" resource="assets" :instance="$asset" avoidForm>
+    <a class="block mb-4 text-cyan-500 underline underline-offset-2" href="{{ $asset->image_url }}" download>Descarregar</a>
 
     <form method="POST" action="{{ $asset->get_update_url() }}" enctype="multipart/form-data">
         @csrf
@@ -21,7 +22,6 @@
                 Salvar
             </x-primary-button>
         </div>
-
     </form>
 
 </x-dashboard-generic-resource>
