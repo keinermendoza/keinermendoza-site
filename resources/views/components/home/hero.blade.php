@@ -1,6 +1,6 @@
 
 <header class="hero" id="hero">
-    <x-section-wrapper>
+    <div class="hero-wrapper">
         <div class="hero-content">
 
             <div class="hero-texts">
@@ -29,5 +29,5 @@
             </div>
             <img class="hero-image" src="{{ asset('images/profile.jpg') }}" alt="imagem de Keiner Mendoza">
         </div>
-    </x-section-wrapper>
+    </div>
 </header>

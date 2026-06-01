@@ -22,13 +22,13 @@ $fs-p-mobile: 0.875rem;
 $fs-xs:0.625rem;
 
 // sizes
-$inline-padding-desktop: 10rem;
-$block-padding-desktop: 3rem;
+$block-padding-desktop: 6.25rem;
 
-$inline-padding-tablet: 2rem;
+$block-padding-mobile: 3rem;
 $inline-padding-mobile: 1.25rem;
+$inline-padding-tablet: 2.5rem;
 
-$min-height: min(100vh, 34rem);
+$min-height: min(100vh, 38rem);
 $break-smaller: 23rem;
 $break-sm:30rem;
 $break-blog: 46.75rem;

@@ -4,5 +4,13 @@
     width: min(100%, $break-lg);
     margin-inline: auto;
     padding-inline: $inline-padding-mobile;
-    padding-block: $block-padding-desktop;
+    padding-block: $block-padding-mobile;
+
+    @media (min-width:$break-sm) {
+        padding-inline: $inline-padding-tablet;
+    }
+
+    @media (min-width:$break-md) {
+        padding-block: $block-padding-desktop;
+    }
 }

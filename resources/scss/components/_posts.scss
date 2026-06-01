@@ -1,5 +1,7 @@
-.blog {
+@use '../globals/variables' as *;
 
+.blog {
+    background-color: $clr-gray;
   // GRID
   .blog-grid {
     margin-top: 1rem;

@@ -3,7 +3,8 @@
     "class" => "",
     "project"
 ])
-<x-home.project-card-layout 
+
+<x-home.project-card-layout
     :image="$project->image_url"
     :title="$project->title"
     class="{{ $class }}"
