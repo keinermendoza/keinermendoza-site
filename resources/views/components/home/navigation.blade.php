@@ -1,6 +1,12 @@
 <nav>
   <div class="wrapper">
-    <div class="logo"><a href="/#inicio">Abogada Magdiele</a></div>
+
+    <div class="logo">
+        <a href="/#hero">
+            <x-application-logo />
+            <span>Keiner Mendoza</span>
+        </a>
+    </div>
 
     <input type="radio" name="slider" id="menu-btn">
     <input type="radio" name="slider" id="close-btn">
@@ -11,16 +17,12 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
       </svg>
       </label>
-      <li><a class="nav-anchor" href="#sobre-mi">Sobre Mí</a></li>
-      <li><a class="nav-anchor" href="#servicios">Servicios</a></li>
+      <li><a class="nav-anchor" href="#sobre-mim">Sobre Mim</a></li>
+      <li><a class="nav-anchor" href="#habilidades">Habilidades</a></li>
 
-      <li><a class="nav-anchor" href="#empezando">Empezando</a></li>
-      <li><a class="nav-anchor" href="#resenas">Reseñas</a></li>
-      <li><a class="nav-anchor" href="#direccion">Dirección</a></li>
-      <li><a class="nav-anchor" href="#respuestas">Respuestas</a></li>
-      <li class="primary-btn-container">
-        <Whatsapp class="btn-primary">Agendar cita</Whatsapp>
-      </li>
+      <li><a class="nav-anchor" href="#projetos">Projetos</a></li>
+      <li><a class="nav-anchor" href="#postagens">Postagens</a></li>
+
       <li><ShareBtn /></li>
 
     </ul>
@@ -33,9 +35,8 @@
 </nav>
 
 <script>
-  document.addEventListener('astro:after-swap', closeMobileNavabarOnClickItem);
   document.addEventListener('DOMContentLoaded', closeMobileNavabarOnClickItem);
-  
+
   function closeMobileNavabarOnClickItem() {
     const closeRadioBtn = document.getElementById('close-btn');
     document.querySelectorAll('.nav-anchor').forEach(anchor  => {

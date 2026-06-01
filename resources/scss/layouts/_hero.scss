@@ -21,7 +21,7 @@
     height: $min-height;
     justify-content: end;
     gap: 1rem;
-    
+
     @media (min-width: $break-md) {
         max-width: 100%;
         flex-direction: row;
@@ -47,7 +47,7 @@
             @media (min-width:$break-lg) {
                 font-size: 3rem;
             }
-        
+
             & .my-name {
                 display: none;
                 font-size: 1.25rem;
@@ -72,7 +72,7 @@
             }
         }
 
-        .call-to-action{ 
+        .call-to-action{
             display: flex;
             justify-content: center;
             gap: 1rem;

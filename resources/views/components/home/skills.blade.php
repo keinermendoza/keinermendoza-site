@@ -1,6 +1,6 @@
-<section id="skills">
+<section class="skills" id="habilidades">
   <x-section-wrapper>
-    <x-ui.section-heading title="Minhas principais ferramentas" subtitle="Tech Stack" />
+    <x-ui.section-heading title="Minhas principais ferramentas" subtitle="Habilidades" />
 
     <div class="skills-grid">
       @foreach ($skills as $skill)

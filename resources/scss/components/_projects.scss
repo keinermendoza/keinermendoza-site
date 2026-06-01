@@ -1,6 +1,6 @@
 @use '../globals/variables' as *;
 
-#projects {
+.projects {
   .projects-header {
     display: flex;
     flex-direction: column;
@@ -32,14 +32,14 @@
     @media (min-width: 1024px) {
       grid-template-columns: repeat(12, 1fr);
     }
-    
+
     .project-main {
       @media (min-width: 1024px) {
         min-height: 450px;;
         grid-column: span 8;
       }
     }
-      
+
     .projects-side {
       display: flex;
       flex-direction: column;

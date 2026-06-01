@@ -1,7 +1,9 @@
+@use '../globals/variables' as *;
+
 .primary-btn-container {
   display: flex;
   align-items: center;
-  
+
   // sparate primary buttons from all other links
   margin-left: auto;
   margin-right: 1rem;
@@ -28,35 +30,44 @@ nav {
   // blur
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  
-  
+
+
   input{
     display: none;
   }
 }
 
 .logo a {
+    display: flex;
+    gap:1rem;
+    align-items: center;
   white-space: nowrap;
-  font-size: 24px;
-  font-weight: var(--fw-title);
+  font-size: 22px;
+  font-weight: $fw-600;
   text-decoration: none;
-  color: var(--clr-black);
-  @media screen and (max-width: $brakepoint) {font-size:var(--fs-sm);}
+  color: $clr-black;
+  @media screen and (max-width: $brakepoint) {font-size:$fs-base;}
+    img {
+        width: 48px;
+        aspect-ratio: 1;
+    }
 }
 
-.wrapper {
-  max-width: 95rem;
-  margin-inline: auto;
-  position: relative;
-  padding: 0px 1.5rem;
-  height: 70px;
-  line-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    .wrapper {
+    position: relative;
+    padding: 0px 1.5rem;
+    height: 70px;
+    line-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  // separate logo from all other links
-  gap:max(5rem, 4.8vw);
+    // width
+    width: min(100%, $break-lg);
+    margin-inline: auto;
+
+    // separate logo from all other links
+    gap:max(5rem, 4.8vw);
 }
 
 .nav-links {
@@ -72,7 +83,7 @@ nav {
     max-width: 350px;
     top: 0;
     left: -100%;
-    background-color: var(--clr-soft-gray);
+    background-color: $clr-white-dark;
     display: block;
     padding: 50px 10px;
     line-height: 50px;
@@ -104,7 +115,7 @@ nav {
 
       &:hover,
       &:focus {
-        background: var(--clr-soft-gray) 
+        background: var(--clr-soft-gray)
       }
     }
   }
@@ -115,7 +126,7 @@ nav {
   // font-size: 20px;
   cursor: pointer;
   display: none;
-  
+
 
 
   // define button shape

@@ -1,8 +1,8 @@
-<section id="projects" class="projects-section">
+<section id="projetos" class="projects">
   <x-section-wrapper>
-    
+
     <div class="projects-header">
-      <x-ui.section-heading title="Projetos em Destaque" subtitle="Showcase" />
+      <x-ui.section-heading title="Projetos em Destaque" subtitle="Projetos" />
       <a href="#" class="link">
         Ver todos os projetos
       </a>
@@ -13,18 +13,18 @@
 
       <!-- MAIN PROJECT -->
       @php($firstProject = $projects->get(0))
-      
+
       @if($firstProject)
       <x-home.project-card class="project-main" :project="$firstProject" />
       @else
-      <x-home.project-card-layout 
+      <x-home.project-card-layout
         class="project-main"
         title="Projeto em Construção"/>
       @endif
 
       <!-- SIDE -->
       <div class="projects-side">
-        
+
         @php($secondProject = $projects->get(1))
         @if($secondProject)
           <x-home.project-card :project="$secondProject" />
@@ -44,4 +44,4 @@
     </div>
 
   </x-section-wrapper>
-</section>    
+</section>

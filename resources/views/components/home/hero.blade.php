@@ -14,10 +14,7 @@
                     Tenho experiência como freelancer e estou em busca da minha primeira oportunidade como desenvolvedor fullstack.
                 </p>
                 <div class="call-to-action">
-                    
-                    <x-ui.btn-primary 
-                        href="https://wa.me/5565992823891?text=Ol%C3%A1!%20Estive%20vendo%20o%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20conversa%20com%20voc%C3%AA%20para%20uma%20poss%C3%ADvel%20entrevista.%20Quando%20voc%C3%AA%20teria%20disponibilidade%3F%0A"
-                        text="Entrar em Contato"/>
+
 
                     <a class="secondary-button"  aria-label="baixar curriculo do Keiner Mendoza"
                         download
@@ -34,4 +31,3 @@
         </div>
     </x-section-wrapper>
 </header>
-        

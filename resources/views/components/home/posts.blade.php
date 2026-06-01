@@ -1,8 +1,8 @@
-<section id="blog">
+<section class="blog" id="postagens">
   <x-section-wrapper>
 
     <!-- HEADER -->
-    <x-ui.section-heading title="Ultimas postagens" subtitle="Blog" />
+    <x-ui.section-heading title="Ultimas postagens" subtitle="Postagens" />
 
     <!-- GRID -->
     <div class="blog-grid">

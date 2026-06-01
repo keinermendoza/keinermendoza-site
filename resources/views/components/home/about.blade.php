@@ -1,17 +1,9 @@
-<section id="about">
+<section class="about" id="sobre-mim">
 
   <x-section-wrapper>
-    {{-- <h2 class="h2 mb-3">Sobre Mi</h2>
-    <p class="mb-3">
-        Sou venezuelano e resido no Brasil desde 2022. Falo espanhol e português, e tenho capacidade de compreender documentação técnica em inglês. Atualmente estou cursando o segundo semestre de Análise e Desenvolvimento de Sistemas.
-    </p>
-    <p>
-        Meu foco está no desenvolvimento backend com <strong>PHP, Laravel e MySQL</strong>, priorizando a criação de aplicações bem estruturadas e eficientes. Além disso, já desenvolvi projetos utilizando <strong>Python</strong> para web.
-    </p>
-     --}}
 
   <div class="about-content">
-    
+
     <!-- LEFT -->
     <div class="about-left">
       <x-ui.section-heading title="Sobre Mim" subtitle="Perfil" />

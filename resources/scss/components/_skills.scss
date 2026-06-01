@@ -45,8 +45,8 @@
 //   --headline-lg: 700 1.5rem/2rem var(--font-family-base);
 //   --headline-xl: 700 2rem/2.5rem var(--font-family-base);
 // }
-    
-#skills {
+
+.skills {
   background-color: $clr-white-dark;
 
 
@@ -63,7 +63,7 @@
     @media (min-width: 1024px) {
       grid-template-columns: repeat(3, 1fr);
     }
-  }  
+  }
 }
 
 // SKILL CARD
