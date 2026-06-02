@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects.index', [
+        return view('dashboard.projects.index', [
             'projects' => Project::all()
         ]);
     }
@@ -25,7 +25,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create', [
+        return view('dashboard.projects.create', [
             "tags" => Tag::orderBy('title', 'asc')->get(),
             "endpoint" => route("projects.store"),
             "imagesEndpoint" => route("images.index")
@@ -67,7 +67,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', [
+        return view('dashboard.projects.edit', [
             'project' => $project,
             "tags" => Tag::orderBy('title', 'asc')->get(),
             'endpoint' => route("projects.update", $project->id)

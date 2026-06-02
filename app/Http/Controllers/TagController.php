@@ -12,8 +12,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('tags.index', [
-            'tags' => Tag::all()
+        return view("dashboard.tags.index", [
+            "tags" => Tag::all()
         ]);
     }
 
@@ -22,8 +22,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tags.create', [
-            'endpoint' => route("tags.store")
+        return view("dashboard.tags.create", [
+            "endpoint" => route("tags.store")
         ]);
     }
 
@@ -42,7 +42,7 @@ class TagController extends Controller
 
         $data["is_public"] = $request->boolean("is_public");
         Tag::create($data);
-        return redirect()->route('tags.index');
+        return redirect()->route("tags.index");
     }
 
     /**
@@ -58,9 +58,9 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('tags.edit', [
-            'tag' => $tag,
-            'endpoint' => route("tags.update", $tag->id)
+        return view("dashboard.tags.edit", [
+            "tag" => $tag,
+            "endpoint" => route("tags.update", $tag->id)
         ]);
     }
 
@@ -90,11 +90,11 @@ class TagController extends Controller
     {
         if($tag->canBeDeleted()) {
             $tag->delete();
-            return redirect()->route('tags.index');
+            return redirect()->route("tags.index");
         }
 
         return back()->withErrors([
-            'error' => "Para apagar a tag \"{$tag->title}\" precisa primeiro deletar as instancias a seguir: {$tag->getRelationedIntanceTitles()}"
+            "error" => "Para apagar a tag \"{$tag->title}\" precisa primeiro deletar as instancias a seguir: {$tag->getRelationedIntanceTitles()}"
         ]);
 
     }

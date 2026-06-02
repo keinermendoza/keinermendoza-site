@@ -13,9 +13,9 @@ class AssetController extends Controller
      */
     public function index()
     {
-        return view('assets.index', [
-            'assets' => Asset::all()
-        ]); 
+        return view("dashboard.assets.index", [
+            "assets" => Asset::all()
+        ]);
     }
 
     /**
@@ -23,9 +23,9 @@ class AssetController extends Controller
      */
     public function create()
     {
-        return view('assets.create', [
-            'endpoint' => route("assets.store")
-        ]); 
+        return view("dashboard.assets.create", [
+            "endpoint" => route("assets.store")
+        ]);
     }
 
     /**
@@ -37,9 +37,9 @@ class AssetController extends Controller
             "name" => ["required"],
             "file" => ["mimes:png,jpeg,bmp,gif,webp,pdf,csv,docx,xlsx"],
         ]);
-        if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('assets', 'public');
-            $type = Asset::getType($request->file('file'));
+        if ($request->hasFile("file")) {
+            $path = $request->file("file")->store("assets", "public");
+            $type = Asset::getType($request->file("file"));
 
              Asset::create([
                 "name" => $request->input("name"),
@@ -47,19 +47,19 @@ class AssetController extends Controller
                 "path" => $path
             ]);
         }
-       
-        return redirect()->route('assets.index');
+
+        return redirect()->route("assets.index");
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Asset $asset)
     {
-        return view('assets.edit', [
-            'asset' => $asset,
-        ]); 
+        return view("dashboard.assets.edit", [
+            "asset" => $asset,
+        ]);
     }
 
     /**
@@ -81,8 +81,8 @@ class AssetController extends Controller
      */
     public function destroy(Asset $asset)
     {
-        Storage::disk('public')->delete($asset->path);
+        Storage::disk("public")->delete($asset->path);
         $asset->delete();
-        return redirect()->route('assets.index');
+        return redirect()->route("assets.index");
     }
 }

@@ -1,13 +1,12 @@
 @props([
     "isBlue" => false,
-    "class" => "",
     "project"
 ])
 
 <x-home.project-card-layout
     :image="$project->image_url"
     :title="$project->title"
-    class="{{ $class }}"
+    {{ $attributes }}
     >
     <x-slot name="tags">
     @foreach ($project->tags as $tag)

@@ -1,3 +1,7 @@
+@props([
+    "links"
+])
+
 <nav>
   <div class="wrapper">
 
@@ -17,11 +21,10 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
       </svg>
       </label>
-      <li><a class="nav-anchor" href="#sobre-mim">Sobre Mim</a></li>
-      <li><a class="nav-anchor" href="#habilidades">Habilidades</a></li>
 
-      <li><a class="nav-anchor" href="#projetos">Projetos</a></li>
-      <li><a class="nav-anchor" href="#postagens">Postagens</a></li>
+        @foreach ($links as $link)
+        <li><a class="nav-anchor" href="{{ $link['ref'] }}">{{ $link['text'] }}</a></li>
+        @endforeach
 
       <li><ShareBtn /></li>
 

@@ -1,23 +1,6 @@
 @use '../globals/variables' as *;
 
-.primary-btn-container {
-  display: flex;
-  align-items: center;
-
-  // sparate primary buttons from all other links
-  margin-left: auto;
-  margin-right: 1rem;
-
-  .btn-primary {
-    line-height: 1.5;
-    padding: 10px 24px;
-    border-radius: 22px;
-    flex-shrink: 0;
-    font-size: 1rem;
-  }
-}
-
-$brakepoint: 85rem;
+$brakepoint: 1280px;
 
 // adapted from https://codepen.io/fadzrinmadu/pen/bGqrJjB
 // root
@@ -41,19 +24,19 @@ nav {
     display: flex;
     gap:1rem;
     align-items: center;
-  white-space: nowrap;
-  font-size: 22px;
-  font-weight: $fw-600;
-  text-decoration: none;
-  color: $clr-black;
-  @media screen and (max-width: $brakepoint) {font-size:$fs-base;}
-    img {
-        width: 48px;
-        aspect-ratio: 1;
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: $fw-600;
+    text-decoration: none;
+    color: $clr-black;
+    @media screen and (max-width: $brakepoint) {font-size:$fs-base;}
+        img {
+            width: 48px;
+            aspect-ratio: 1;
+        }
     }
-}
 
-    .wrapper {
+.wrapper {
     position: relative;
     padding: 0px 1.5rem;
     height: 70px;
@@ -123,7 +106,6 @@ nav {
 }
 
 .btn {
-  // font-size: 20px;
   cursor: pointer;
   display: none;
 

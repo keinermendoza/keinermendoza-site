@@ -20,6 +20,13 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
+Route::get('/projetos', function () {
+    return view('projects.index', [
+        "projects" => Project::public()->with('tags')->get(),
+    ]);
+})->name('projects');
+
+
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', function() {

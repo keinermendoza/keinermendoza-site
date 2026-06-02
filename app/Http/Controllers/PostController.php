@@ -14,8 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index', [
-            'posts' => Post::all()
+        return view("dashboard.posts.index", [
+            "posts" => Post::all()
         ]);
     }
 
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("posts.create", [
+        return view("dashboard.posts.create", [
             "endpoint" => route("posts.store"),
             "tags" => Tag::orderBy("title", "asc")->get()
         ]);
@@ -47,7 +47,7 @@ class PostController extends Controller
         $post = Post::create($data);
         $post->tags()->sync($data["tags"] ?? []);
 
-        return redirect()->route('posts.index');
+        return redirect()->route("posts.index");
     }
 
     /**
@@ -63,10 +63,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', [
-            'post' => $post,
+        return view("dashboard.posts.edit", [
+            "post" => $post,
             "tags" => Tag::orderBy("title", "asc")->get(),
-            'endpoint' => route("posts.update", $post->id)
+            "endpoint" => route("posts.update", $post->id)
         ]);
     }
 
@@ -98,6 +98,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route("posts.index");
     }
 }

@@ -3,7 +3,7 @@
 
     <div class="projects-header">
       <x-ui.section-heading title="Projetos em Destaque" subtitle="Projetos" />
-      <a href="#" class="link">
+      <a href="{{ route('projects') }}" class="link">
         Ver todos os projetos
       </a>
     </div>
