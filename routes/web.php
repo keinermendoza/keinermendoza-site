@@ -20,11 +20,22 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
-Route::get('/projetos', function () {
-    return view('projects.index', [
-        "projects" => Project::public()->with('tags')->get(),
-    ]);
-})->name('projects');
+Route::prefix('projects')->name('projects.')->group(function() {
+
+    Route::get('/', function () {
+        return view('projects.index', [
+            "projects" => Project::public()->with('tags')->get(),
+        ]);
+    })->name('index');
+
+    Route::get('/{project}', function (Project $project ) {
+        return view('projects.show', [
+            "project" => $project
+        ]);
+    })->name('show');
+
+});
+
 
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {

@@ -30,6 +30,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | (CUSTOM) Frontend URL
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "environment" URL your frontend SPA is currently
+    | running in. Set this in your ".env" file
+    */
+    'frontend_url' => env('FRONTEND_URL', 'http://localhost:5173'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |

@@ -19,13 +19,18 @@
     <x-home.navigation :links="$links" />
     <section class="bg-blue-200 pt-10">
         <x-section-wrapper class="min-h-screen">
-            <h1 class="h2 mb-8">Projetos</h1>
+            <h1 class="h2 mb-8">{{$project->name}}</h1>
 
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
-                @foreach ($projects as $project)
-                <x-home.project-card :project="$project" class="max-h-80" />
-                @endforeach
+            <div>
+            @foreach ($project->tags as $tag)
+                <x-ui.tag>{{$tag->title}}</x-ui.tag>
+            @endforeach
             </div>
+
+            <div class="project-content">
+                {! $project->content !}
+            </div>
+
         </x-section-wrapper>
     </section>
     <x-home.footer />
