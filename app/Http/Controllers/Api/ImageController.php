@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use Illuminate\Http\Request;
 
-use function PHPSTORM_META\map;
 
-class ImageController extends Controller
+class ImageAPIController extends Controller
 {
     /**
      * Display a listing of the resource.

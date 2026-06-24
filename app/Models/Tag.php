@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\IsPublicScope;
 use App\Models\Traits\GetImageURL;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tag extends Model
 {
     use IsPublicScope;
     use GetImageURL;
-    
+    use HasFactory;
+
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -21,23 +24,23 @@ class Tag extends Model
         'is_public'
     ];
 
-    public function get_edit_url() 
+    public function get_edit_url()
     {
         return route('tags.edit', [$this->id]);
     }
 
-    public function get_update_url() 
+    public function get_update_url()
     {
         return route('tags.update', [$this->id]);
     }
-    
-    public function get_destroy_url() 
+
+    public function get_destroy_url()
     {
         return route('tags.destroy', [$this->id]);
     }
 
     public function canBeDeleted(): bool
-    {   
+    {
         return !$this->projects()->exists() && !$this->posts()->exists();
     }
 
@@ -47,12 +50,12 @@ class Tag extends Model
         return "";
     }
 
-    public function projects() 
+    public function projects()
     {
         return $this->belongsToMany(Tag::class, "tags_projects");
     }
 
-    public function posts() 
+    public function posts()
     {
         return $this->belongsToMany(Tag::class, "tags_posts");
     }
