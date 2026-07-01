@@ -16,7 +16,6 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('v1')->name('admin.')->grou
     Route::apiResource('/tags', TagAPIController::class);
     Route::apiResource('/images', ImageAPIController::class)->except(['public']);
     Route::apiResource('/messages', ContactMessageAPIController::class)->except(['store']);
-
 });
 
 Route::post('v1/messages', [ContactMessageAPIController::class, 'store'])->name('message.store');

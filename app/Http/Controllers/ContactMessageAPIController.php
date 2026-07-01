@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMessageMailToOwner;
+use App\Mail\ContactMessageMailToUser;
+
 
 class ContactMessageAPIController extends Controller
 {
@@ -23,10 +27,18 @@ class ContactMessageAPIController extends Controller
         $data = $request->validate([
             'email' => 'required|email',
             'content' => 'required|string',
-            'phone' => 'sometimes|string',
+            'phone' => 'required|string',
         ]);
         $message = ContactMessage::create($data);
-        // TODO: ENVIAR MENSAGEM
+
+        Mail::to(config('app.email_owner'))->queue(
+            new ContactMessageMailToOwner($message)
+        );
+
+        Mail::to($message->email)->queue(
+            new ContactMessageMailToUser($message)
+        );
+
         return response(null, 201);
     }
 

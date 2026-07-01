@@ -23,5 +23,6 @@
     <x-home.about />
     <x-home.skills :skills="$skills" />
     <x-home.projects :projects="$projects" />
+    <x-home.contact />
     <x-home.footer />
 </x-layout>

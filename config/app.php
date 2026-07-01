@@ -38,6 +38,18 @@ return [
     */
     'frontend_url' => env('FRONTEND_URL', 'http://localhost:5173'),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | (CUSTOM) Owner email
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "environment" URL your frontend SPA is currently
+    | running in. Set this in your ".env" file
+    */
+    'email_owner' => env('EMAIL_OWNER', 'test@example.com'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
