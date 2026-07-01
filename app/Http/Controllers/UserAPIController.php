@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUpdateRequest;
 
 
 class UserAPIController extends Controller
@@ -27,7 +25,7 @@ class UserAPIController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
-            'is_admin' => 'sometimes|boolean'
+            'is_admin' => 'sometimes|boolean',
         ]);
         $user = User::create($data);
         return $user->toResource();
