@@ -88,4 +88,25 @@ class ImageAPITest extends TestCase
         ]);
     }
 
+    public function test_list_endpoint_returns_collection_of_image_objects()
+    {
+        $image = Image::factory()->count(2)->create();
+
+        Sanctum::actingAs(User::factory()->admin()->create());
+        $this->getJson('/api/v1/images/')
+        ->assertStatus(200)
+        ->assertJson([
+            'data' => [
+                [
+                    'id' => 1,
+                    'image' => $image[0]->url()
+                ],
+                [
+                    'id' => 2,
+                    'image' => $image[1]->url()
+                ]
+            ]
+        ]);
+    }
+
 }

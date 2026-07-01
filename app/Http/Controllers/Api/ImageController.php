@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use Illuminate\Http\Request;
 
-
 class ImageAPIController extends Controller
 {
     /**

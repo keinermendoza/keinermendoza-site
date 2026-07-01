@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\ImageResource;
 
 class ImageAPIController extends Controller
 {
@@ -13,7 +13,7 @@ class ImageAPIController extends Controller
      */
     public function index()
     {
-        Image::all()->toResourceCollection();
+        return ImageResource::collection(Image::all());
     }
 
     /**
@@ -22,15 +22,14 @@ class ImageAPIController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "file" => ["image", "max:2048"],
-            "description" => ["required"],
-            "is_public" => ["sometimes", "boolean"]
+            'file' => ['required', 'image', 'max:2048'],
+            'description' => ['required'],
+            'is_public' => ['sometimes', 'boolean']
         ]);
 
 
-        $data["resource"] = $request->file('file')->store('images', 'local');
-        unset($data["file"]);
-
+        $data['resource'] = $request->file('file')->store('images', 'local');
+        unset($data['file']);
         $image = Image::create($data);
 
         return $image->toResource()->response()->setStatusCode(201);
@@ -39,11 +38,13 @@ class ImageAPIController extends Controller
     /**
      * Display the specified resource.
      */
-    public function public(Image $image)
+    public function public(Request $request, Image $image)
     {
-        if ($image->is_public) {
+        $currentUser = $request->user();
+        if  ($image->is_public || $currentUser?->is_admin) {
             return response()->file(
-                Storage::disk('local')->path($image->resource)
+                $image->getAssociatedImage()
+                // Storage::disk('local')->path($image->resource)
             );
         } else {
             return response()->json([
@@ -58,7 +59,20 @@ class ImageAPIController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        $data = $request->validate([
+            'file' => ['sometimes', 'image', 'max:2048'],
+            'description' => ['required'],
+            'is_public' => ['sometimes', 'boolean']
+        ]);
+
+        if ($request->hasFile('file')) {
+            $data['resource'] = $request->file('file')->store('images', 'local');
+            unset($data['file']);
+            $image->deleteAssociatedImage();
+        }
+
+        $image->update($data);
+        return $image->toResource();
     }
 
     /**
@@ -66,6 +80,8 @@ class ImageAPIController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image->deleteAssociatedImage();
+        $image->delete();
+        return response(null, 200);
     }
 }
