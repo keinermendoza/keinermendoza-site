@@ -17,9 +17,7 @@
       @if($firstProject)
       <x-home.project-card class="project-main" :project="$firstProject" />
       @else
-      <x-home.project-card-layout
-        class="project-main"
-        title="Projeto em Construção"/>
+      <x-home.empty-project-card class="project-main" />
       @endif
 
       <!-- SIDE -->
@@ -29,15 +27,14 @@
         @if($secondProject)
           <x-home.project-card :project="$secondProject" />
         @else
-          <x-home.project-card-layout title="Projeto em Construção">
-          </x-home.project-card-layout>
+        <x-home.empty-project-card />
         @endif
 
         @php($thirdProject = $projects->get(2))
         @if($thirdProject)
-          <x-home.project-card :project="$thirdProject" />
+            <x-home.project-card :project="$thirdProject" />
         @else
-          <x-home.project-card-layout title="Projeto em Construção"/>
+            <x-home.empty-project-card />
         @endif
 
       </div>

@@ -1,20 +1,16 @@
-@props([
-    "isBlue" => false,
-    "project"
-])
+<article {{ $attributes->merge(["class" => "project-card"]) }}>
+    <a href="{{ $project->get_absolute_url() }}">
+        <img class="project-card-image" src="{{ $project->image?->url() }}" alt="{{ $project->subtitle }}">
 
-<x-home.project-card-layout
-    :image="$project->image_url"
-    :title="$project->title"
-    {{ $attributes }}
-    >
-    <x-slot name="tags">
-    @foreach ($project->tags as $tag)
-        <x-ui.tag :isBlue="$loop->even">{{ $tag->title}}</x-ui.tag>
-    @endforeach
-    </x-slot>
+        <div class="overlay">
+            <div class="tags">
+                @foreach ($project->tags as $tag)
+                <x-ui.tag :isBlue="$loop->even">{{ $tag->title}}</x-ui.tag>
+                @endforeach
+            </div>
 
-    <x-slot name="description">
-        {{ $project->description }}
-    </x-slot>
-</x-home.project-card-layout>
+            <h3 class="h3">{{ $project->title }}</h3>
+            <p>{{ $project->subtitle }}</p>
+        </div>
+    </a>
+</article>

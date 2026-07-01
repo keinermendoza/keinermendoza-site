@@ -22,14 +22,18 @@ class ProjectAPIController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string',
+            'subtitle' => 'sometimes|string',
             'content' => 'sometimes|string',
-            'slug' => 'required|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
+            'slug' => 'required|unique:projects,slug|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
             'is_public' => 'sometimes|boolean',
             'image_id' => 'sometimes|exists:images,id',
             'tags' => 'sometimes|array',
+            'tags.*' => 'sometimes|exists:tags,id',
         ]);
 
         $project = Project::create($data);
+        $ids = $request->input('tags');
+        $project->tags()->sync($ids);
         return $project->toResource();
     }
 
@@ -48,14 +52,18 @@ class ProjectAPIController extends Controller
     {
         $data = $request->validate([
             'title' => 'sometimes|string',
+            'subtitle' => 'sometimes|string',
             'content' => 'sometimes|string',
-            'slug' => 'sometimes|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
+            'slug' => 'sometimes|unique:projects,slug,' . $project->id . ',id|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
             'is_public' => 'sometimes|boolean',
             'image_id' => 'sometimes|exists:images,id',
             'tags' => 'sometimes|array',
+            'tags.*' => 'sometimes|exists:tags,id',
         ]);
 
         $project->update($data);
+        $ids = $request->input('tags');
+        $project->tags()->sync($ids);
         return $project->toResource();
     }
 

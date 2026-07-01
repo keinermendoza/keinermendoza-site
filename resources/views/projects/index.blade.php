@@ -3,15 +3,6 @@
         "ref" => route('welcome'),
         "text" => "Pagina Principal"
     ],
-    [
-        "ref" => route('dashboard'),
-        "text" => "Todas as Postagens"
-    ],
-    [
-        "ref" => route('dashboard'),
-        "text" => "Todos os Projetos"
-    ],
-
 ])
 
 
@@ -22,7 +13,7 @@
             <h1 class="h2 mb-8">Projetos</h1>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach ($projects as $project)
-                    <x-home.project-card :project="$project" class="max-h-80" />
+                    <x-home.project-card :project="$project" class="min-h-40 max-h-80" />
                 @endforeach
             </div>
         </x-section-wrapper>

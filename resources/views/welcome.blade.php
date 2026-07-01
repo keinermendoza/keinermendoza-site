@@ -21,8 +21,7 @@
     <x-home.navigation :links="$links" />
     <x-home.hero />
     <x-home.about />
-    <x-home.skills :skills="$tags" />
+    <x-home.skills :skills="$skills" />
     <x-home.projects :projects="$projects" />
-    <x-home.posts :posts="$posts" />
     <x-home.footer />
 </x-layout>

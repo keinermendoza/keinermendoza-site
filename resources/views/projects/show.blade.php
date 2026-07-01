@@ -5,10 +5,6 @@
     ],
     [
         "ref" => route('dashboard'),
-        "text" => "Todas as Postagens"
-    ],
-    [
-        "ref" => route('dashboard'),
         "text" => "Todos os Projetos"
     ],
 
@@ -28,7 +24,7 @@
             </div>
 
             <div class="project-content">
-                {! $project->content !}
+                {!! $project->content !!}
             </div>
 
         </x-section-wrapper>

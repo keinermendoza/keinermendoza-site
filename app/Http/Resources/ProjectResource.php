@@ -18,10 +18,11 @@ class ProjectResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'subtitle' => $this->subtitle,
             'content' => $this->content,
-            'image' => $this->image ? $this->image->url() : null,
+            'image' => $this->image ? new ImageResource($this->image) : null,
             'slug' => $this->slug,
-            'is_public' => (int)$this->is_public,
+            'is_public' => (bool) $this->is_public,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'tags' => TagRelationshipResource::collection($this->tags)
