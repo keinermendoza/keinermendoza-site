@@ -58,6 +58,7 @@ nav {
   align-items: center;
   flex-grow: 1;
   gap: 0.25rem;
+  white-space: pre;
 
   @media screen and (max-width: $brakepoint) {
     position: fixed;
@@ -82,7 +83,6 @@ nav {
 
     .nav-anchor {
       color: var(--clr-black);
-      white-space: nowrap;
       text-decoration: none;
       font-size: 18px;
       font-weight: 500;

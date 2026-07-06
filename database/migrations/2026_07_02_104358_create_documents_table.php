@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-           $table->foreignId('image_id')->nullable()->constrained()->nullOnDelete();
+        Schema::create('documents', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('path');
+            $table->boolean('is_cv')->default(false);
+            $table->boolean('is_public')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('image_id');
-        });
+        Schema::dropIfExists('documents');
     }
 };

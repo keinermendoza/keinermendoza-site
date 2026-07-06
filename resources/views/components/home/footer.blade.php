@@ -10,9 +10,9 @@
     <!-- NAV -->
     <div class="footer-nav">
       <a href="/#hero">Inicio</a>
-      <a href="#projects">Projetos</a>
-      <a href="#blog">Blog</a>
-      <a href="#">Termos de Uso</a>
+      <a href="/#projetos-destacados">Projetos Destacados</a>
+
+      {{-- <a href="#">Termos de Uso</a> --}}
     </div>
 
     <!-- COPYRIGHT -->

@@ -1,4 +1,4 @@
-<section id="projetos" class="projects">
+<section id="projetos-destacados" class="projects">
   <x-section-wrapper>
 
     <div class="projects-header">

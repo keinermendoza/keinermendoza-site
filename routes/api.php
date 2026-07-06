@@ -8,6 +8,7 @@ use App\Http\Controllers\ImageAPIController;
 use App\Http\Controllers\TagAPIController;
 use App\Http\Controllers\SkillAPIController;
 use App\Http\Controllers\ContactMessageAPIController;
+use App\Http\Controllers\DocumentAPIController;
 
 Route::middleware(['auth:sanctum', 'admin'])->prefix('v1')->name('admin.')->group(function () {
     Route::apiResource('/users', UserAPIController::class);
@@ -16,7 +17,11 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('v1')->name('admin.')->grou
     Route::apiResource('/tags', TagAPIController::class);
     Route::apiResource('/images', ImageAPIController::class)->except(['public']);
     Route::apiResource('/messages', ContactMessageAPIController::class)->except(['store']);
+    Route::apiResource('/documents', DocumentAPIController::class)->except(['download_cv', 'show']);
+
 });
 
 Route::post('v1/messages', [ContactMessageAPIController::class, 'store'])->name('message.store');
 Route::get('v1/images/{image}', [ImageAPIController::class, 'public'])->name('image.public');
+Route::get('v1/documents/download_cv', [DocumentAPIController::class, 'download_cv'])->name('document.download_cv');
+Route::get('v1/documents/{document}', [DocumentAPIController::class, 'public'])->name('document.public');

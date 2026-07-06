@@ -13,17 +13,17 @@
 
 <x-layout>
     <x-home.navigation :links="$links" />
-    <section class="bg-blue-200 pt-10">
+    <section class="bg-gray-100 pt-10">
         <x-section-wrapper class="min-h-screen">
-            <h1 class="h2 mb-8">{{$project->name}}</h1>
-
+            <h1 class="h2 mb-8">{{$project->title}}</h1>
+            <img class="mb-8 object-cover max-h-[32rem] shadow-lg rounded-lg" src="{{ $project->image?->url() }}" alt="{{ $project->subtitle }}">
             <div>
             @foreach ($project->tags as $tag)
                 <x-ui.tag>{{$tag->title}}</x-ui.tag>
             @endforeach
             </div>
 
-            <div class="project-content">
+            <div class="prose lg:prose-xl">
                 {!! $project->content !!}
             </div>
 

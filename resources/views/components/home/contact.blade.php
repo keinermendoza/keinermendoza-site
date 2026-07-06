@@ -1,15 +1,14 @@
-<div class="container mx-auto max-w-xl py-8">
-    <h1 class="text-2xl font-bold mb-6">
-        Formulario de Contacto
-    </h1>
+<section class="skills" id="contato">
+  <x-section-wrapper>
+    <x-ui.section-heading title="Contato" subtitle="Formulario de Contato" />
 
     <div id="success-message" class="hidden mb-4 rounded bg-green-100 p-3 text-green-700"></div>
     <div id="error-message" class="hidden mb-4 rounded bg-red-100 p-3 text-red-700"></div>
 
-    <form id="contact-form">
+    <form class="mt-4" id="contact-form">
         @csrf
         <div class="mb-4">
-            <label for="email">Email</label>
+            <label class="block mb-2" for="email">Email</label>
 
             <input
                 id="email"
@@ -21,7 +20,7 @@
         </div>
 
         <div class="mb-4">
-            <label for="phone">Numero de Telefone</label>
+            <label class="block mb-2" for="phone">Numero de Telefone</label>
 
             <input
                 id="phone"
@@ -32,7 +31,7 @@
             >
         </div>
         <div class="mb-4">
-            <label for="content">Mensagem</label>
+            <label class="block mb-2" for="content">Mensagem</label>
 
             <textarea
                 id="content"
@@ -52,7 +51,10 @@
 
     </form>
 
-</div>
+
+  </x-section-wrapper>
+</section>
+
 
 <script>
 

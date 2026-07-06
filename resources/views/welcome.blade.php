@@ -8,13 +8,14 @@
         "text" => "Habilidades"
     ],
     [
-        "ref" => "#projetos",
-        "text" => "Projetos"
+        "ref" => "#projetos-destacados",
+        "text" => "Projetos  Destacados"
     ],
     [
-        "ref" => "#postagens",
-        "text" => "Postagens"
+        "ref" => "#contato",
+        "text" => "Contato"
     ],
+
 ])
 
 <x-layout>

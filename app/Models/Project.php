@@ -15,6 +15,11 @@ class Project extends Model
     use HasFactory;
     // use SetSlug;
 
+    //  public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
+
     protected $fillable = [
         'title',
         'subtitle',
@@ -25,7 +30,7 @@ class Project extends Model
     ];
 
     public function get_absolute_url() {
-        return route('projects.show', [$this->id]);
+        return route('projects.show', [$this->slug]);
     }
 
     public function image() {

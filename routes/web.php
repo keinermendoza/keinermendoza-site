@@ -21,7 +21,7 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
-Route::prefix('projects')->name('projects.')->group(function() {
+Route::prefix('projetos')->name('projects.')->group(function() {
 
     Route::get('/', function () {
         return view('projects.index', [
@@ -29,7 +29,7 @@ Route::prefix('projects')->name('projects.')->group(function() {
         ]);
     })->name('index');
 
-    Route::get('/{project}', function (Project $project ) {
+    Route::get('/{project:slug}', function (Project $project ) {
         return view('projects.show', [
             "project" => $project
         ]);
