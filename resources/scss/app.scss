@@ -1,3 +1,10 @@
+// first scss rules
 @use 'globals';
-// @use 'layouts';
 @use 'components';
+
+// then other css
+@import '../css/fonts.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
