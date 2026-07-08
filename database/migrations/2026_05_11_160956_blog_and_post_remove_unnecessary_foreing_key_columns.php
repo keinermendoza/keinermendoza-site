@@ -26,12 +26,12 @@ public function up(): void
      */
     public function down(): void
 {
-    Schema::table('posts', function (Blueprint $table) {
-        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-    });
+    // Schema::table('posts', function (Blueprint $table) {
+    //     $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    // });
 
-    Schema::table('projects', function (Blueprint $table) {
-        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-    });
+    // Schema::table('projects', function (Blueprint $table) {
+    //     $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    // });
 }
 };
