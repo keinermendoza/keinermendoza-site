@@ -22,6 +22,6 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('v1')->name('admin.')->grou
 });
 
 Route::post('v1/messages', [ContactMessageAPIController::class, 'store'])->name('message.store');
-Route::get('v1/images/{image}', [ImageAPIController::class, 'public'])->name('image.public');
+Route::get('v1/images/{image:uuid}', [ImageAPIController::class, 'public'])->name('image.public');
 Route::get('v1/documents/download_cv', [DocumentAPIController::class, 'download_cv'])->name('document.download_cv');
 Route::get('v1/documents/{document}', [DocumentAPIController::class, 'public'])->name('document.public');

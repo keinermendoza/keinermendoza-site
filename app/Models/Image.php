@@ -6,13 +6,20 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 #[Fillable(['resource', 'description', 'is_public'])]
 class Image extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+
+     public function uniqueIds(): array
+    {
+        return ['uuid'];
+    }
+
     public function url() {
-        return route('image.public', [$this->id]);
+        return route('image.public', [$this->uuid]);
     }
 
     public function deleteAssociatedImage() {
