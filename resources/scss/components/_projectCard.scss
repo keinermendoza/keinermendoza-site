@@ -28,6 +28,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
         justify-content: flex-end;
 
         background: linear-gradient(
@@ -39,13 +40,11 @@
         .tags {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 1rem;
         }
 
 
         h3 {
             color: $clr-white;
-            margin-bottom: 0.5rem;
         }
 
         p {

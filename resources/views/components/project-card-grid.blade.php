@@ -3,7 +3,7 @@
     <p class="project__title--mobile">{{$title}}</p>
         <picture class="project-card-grid__image">
             <source srcset="{{ $image }}" media="(min-width: 480px)" />
-            <img src="{{ $image }}" alt={{$title}} />
+            <img src="{{ $image }}" alt="{{$title}}" />
       </picture>
     <div class="project-card-grid__summary-section">
         <h3 class="h3 project__title--desktop">{{$title}}</h3>

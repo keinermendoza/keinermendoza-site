@@ -30,6 +30,16 @@ export default {
                             border: `1px solid ${theme('colors.slate.200')}`,
                             boxShadow: theme('boxShadow.lg'),
                         },
+                        img: {
+                            width: '100%',
+                            maxWidth: '100%',
+                            height: 'auto',
+                            aspectRatio: '3 / 2',
+                            maxHeight: '40rem',
+                            objectFit: 'cover',
+                            borderRadius: theme('borderRadius.xl'),
+                            margin: '2rem auto',
+                        }
                     },
                 },
             }),
