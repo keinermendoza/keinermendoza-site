@@ -19,6 +19,7 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'subtitle' => $this->subtitle,
+            'importance' => $this->importance,
             'content' => $this->content,
             'image' => $this->image ? new ImageResource($this->image) : null,
             'slug' => $this->slug,

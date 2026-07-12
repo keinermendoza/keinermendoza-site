@@ -12,7 +12,7 @@ class ProjectAPIController extends Controller
      */
     public function index()
     {
-        return Project::all()->toResourceCollection();
+        return Project::orderBy('importance', 'desc')->get()->toResourceCollection();
     }
 
     /**
@@ -23,6 +23,7 @@ class ProjectAPIController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'subtitle' => 'sometimes|string',
+            'importance' => 'sometimes|integer',
             'content' => 'sometimes|string',
             'slug' => 'required|unique:projects,slug|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
             'is_public' => 'sometimes|boolean',
@@ -53,6 +54,7 @@ class ProjectAPIController extends Controller
         $data = $request->validate([
             'title' => 'sometimes|string',
             'subtitle' => 'sometimes|string',
+            'importance' => 'sometimes|integer',
             'content' => 'sometimes|string',
             'slug' => 'sometimes|unique:projects,slug,' . $project->id . ',id|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
             'is_public' => 'sometimes|boolean',
