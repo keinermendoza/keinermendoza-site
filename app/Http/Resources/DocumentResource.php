@@ -20,8 +20,8 @@ class DocumentResource extends JsonResource
             'file' => $this->url(),
             'is_public' => (bool) $this->is_public,
             'is_cv' => (bool) $this->is_cv,
-            'created_at' => $this->created_at?->toIso8601String(),
-            'updated_at' => $this->updated_at?->toIso8601String(),
+            'created_at' => $this->created_at->format('d/m/Y - g:i A'),
+            'updated_at' => $this->updated_at->format('d/m/Y - g:i A'),
         ];
     }
 }

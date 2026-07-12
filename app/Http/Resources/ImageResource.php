@@ -19,8 +19,8 @@ class ImageResource extends JsonResource
             'description' => $this->description,
             'is_public' => (bool)$this->is_public,
             'image' => $this->url(),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'created_at' => $this->created_at->format('d/m/Y - g:i A'),
+            'updated_at' => $this->updated_at->format('d/m/Y - g:i A'),
         ];
     }
 }

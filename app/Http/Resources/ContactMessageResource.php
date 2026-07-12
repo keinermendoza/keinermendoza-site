@@ -21,8 +21,8 @@ class ContactMessageResource extends JsonResource
             'phone' => $this->phone,
             'readed' => (bool) $this->readed,
             'is_spam' => (bool) $this->is_spam,
-            'created_at' => $this->created_at?->toIso8601String(),
-            'updated_at' => $this->updated_at?->toIso8601String(),
+            'created_at' => $this->created_at->format('d/m/Y - g:i A'),
+            'updated_at' => $this->updated_at->format('d/m/Y - g:i A'),
         ];
     }
 }
