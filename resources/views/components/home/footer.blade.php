@@ -10,9 +10,8 @@
     <!-- NAV -->
     <div class="footer-nav">
       <a href="/#hero">Inicio</a>
-      <a href="/#projetos-destacados">Projetos Destacados</a>
+      <a href="{{ route('projects.index') }}">Todos os Projetos</a>
 
-      {{-- <a href="#">Termos de Uso</a> --}}
     </div>
 
     <!-- COPYRIGHT -->

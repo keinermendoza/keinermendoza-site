@@ -8,7 +8,7 @@
 
             <div class="tags">
                 @foreach ($project->tags as $tag)
-                <x-ui.tag :isBlue="$loop->even">{{ $tag->title}}</x-ui.tag>
+                <x-ui.tag :isBlue="$loop->odd">{{ $tag->title}}</x-ui.tag>
                 @endforeach
             </div>
 

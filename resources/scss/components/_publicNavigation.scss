@@ -53,12 +53,11 @@ nav {
     gap:max(5rem, 4.8vw);
 }
 
-.nav-links {
+.public-nav-links {
   display: inline-flex;
   align-items: center;
   flex-grow: 1;
   gap: 0.25rem;
-  white-space: pre;
 
   @media screen and (max-width: $brakepoint) {
     position: fixed;
@@ -78,6 +77,8 @@ nav {
 
   li {
     list-style: none;
+  white-space: pre;
+
 
     @media screen and (max-width: $brakepoint) {margin: 15px 10px;}
 
@@ -131,7 +132,7 @@ nav {
 }
 
 @media screen and (max-width: $brakepoint) {
-  #menu-btn:checked ~ .nav-links{
+  #menu-btn:checked ~ .public-nav-links{
     left: 0%;
   }
   #menu-btn:checked ~ .btn.menu-btn{
