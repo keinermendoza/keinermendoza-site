@@ -11,7 +11,7 @@
 ])
 
 
-<x-layout :image="$project->image->url()" :title="$project->title" url="{{ $project->get_absolute_url() }}" description="{{ $project->subtitle }}">
+<x-layout :image="$project->image->url()" title="Projetos | {{ $project->title }}" url="{{ $project->get_absolute_url() }}" description="{{ $project->subtitle }}">
     <x-home.navigation :links="$links" />
     <section class="bg-gray-100 pt-10 ">
         <x-section-wrapper class="min-h-screen">
