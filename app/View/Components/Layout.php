@@ -8,11 +8,11 @@ use Illuminate\View\Component;
 
 class Layout extends Component
 {
- 
+
 
     public string $canonicalURL;
     public string $socialImageURL;
- 
+
     /**
      * Create a new component instance.
      */
@@ -20,7 +20,7 @@ class Layout extends Component
         string $image = '',
         string $url = '',
         public string $title = "Keiner Mendoza",
-        public string $description = "Tenho experiência na criação de múltiplos sites, o que me permitiu desenvolver habilidades práticas em tecnologias como PHP, Python, SQL, Git e JavaScript, além do uso de ferramentas de design como Figma. Estou em constante aprendizado, buscando aprimorar minhas competências e construir soluções eficientes e bem estruturadas."
+        public string $description = "Estudante de Análise e Desenvolvimento de Sistemas, com experiência em projetos freelance utilizando Python, PHP, JavaScript e SQL."
     )
     {
         $this->socialImageURL = $image ? asset($image): asset('images/preview.jpg');
